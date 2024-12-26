@@ -6,9 +6,9 @@ Application de gestion d'une boulangerie de la production jusqu'a la commerciali
 
 ## Set-Up
 
-Le projet est prevu pour etre developper sur vscode dont la configuration du java project se trouve dans `.vscode/settings.json`
+Le projet est prevu pour etre developper sur vscode dont la configuration du java project se trouve dans `.vscode/settings.json` , et pour que le projet se charge correctement assurez vous d'avoir l'extension `java project` installer car les classes seront compiler automatiquement dans `WEB-INF/classes`
 
-Les librairies seront dans le dossier `lib` mais qui ne sera pas envoyer sur le repo distant par `.gitignore`
+Les librairies seront dans le dossier `WEB-INF/lib` mais qui ne sera pas envoyer sur le repo distant par `.gitignore`
 
 ### Required Libs
 
