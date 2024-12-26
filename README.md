@@ -10,6 +10,10 @@ Le projet est prevu pour etre developper sur vscode dont la configuration du jav
 
 Les librairies seront dans le dossier `WEB-INF/lib` mais qui ne sera pas envoyer sur le repo distant par `.gitignore`
 
+Le developpement de l'application se fera dans le dossier `src`
+
+Les pages (vues) seront dans le dossier pages et les fichiers utils pour l'affichage dans `assets`
+
 ### Required Libs
 
 Voici la liste des librairies a ajouter dans le dossier lib
