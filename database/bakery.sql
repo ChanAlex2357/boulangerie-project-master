@@ -141,7 +141,7 @@ CREATE TABLE PreOrderDetails(
 );
 
 -- Table: Commande (Order)
-CREATE TABLE Order(
+CREATE TABLE Ordering(
    id VARCHAR(255),
    order_date DATE NOT NULL,
    supplier_id VARCHAR(255) NOT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE OrderDetails(
    order_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(product_id) REFERENCES Product(id),
-   FOREIGN KEY(order_id) REFERENCES Order(id)
+   FOREIGN KEY(order_id) REFERENCES Ordering(id)
 );
 
 -- Table: Reception (Reception)
@@ -170,7 +170,7 @@ CREATE TABLE Reception(
    order_id VARCHAR(255) NOT NULL,
    supplier_invoice_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(order_id) REFERENCES Order(id),
+   FOREIGN KEY(order_id) REFERENCES Ordering(id),
    FOREIGN KEY(supplier_invoice_id) REFERENCES SupplierInvoice(id)
 );
 
@@ -265,4 +265,14 @@ CREATE TABLE DeliveryDetails(
    PRIMARY KEY(id),
    FOREIGN KEY(product_id) REFERENCES Product(id),
    FOREIGN KEY(delivery_id) REFERENCES Delivery(id)
+);
+
+CREATE TABLE ProductionDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   id_production VARCHAR(255)  NOT NULL,
+   id_recipe VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_production) REFERENCES Production(id),
+   FOREIGN KEY(id_recipe) REFERENCES Recipe(id)
 );
