@@ -1,0 +1,251 @@
+CREATE TABLE TypeProduct(
+   id VARCHAR(255) ,
+   val VARCHAR(50)  NOT NULL,
+   desce VARCHAR(50) ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE Unite(
+   id VARCHAR(255) ,
+   val VARCHAR(50)  NOT NULL,
+   desce VARCHAR(255) ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE Fournisseur(
+   id VARCHAR(255) ,
+   name VARCHAR(255)  NOT NULL,
+   location VARCHAR(255) ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE BonPreCommande(
+   id VARCHAR(255) ,
+   date_pre_commande DATE NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE TypeMvt(
+   id VARCHAR(255) ,
+   val VARCHAR(50)  NOT NULL,
+   desce VARCHAR(50) ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE Production(
+   id VARCHAR(255) ,
+   date_production DATE NOT NULL,
+   cout_production VARCHAR(255) ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE FactureFournisseur(
+   id VARCHAR(255) ,
+   date_limit_payement DATE NOT NULL,
+   montant NUMERIC(15,2)   NOT NULL,
+   id_fournisseur VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_fournisseur) REFERENCES Fournisseur(id)
+);
+
+CREATE TABLE Client(
+   id VARCHAR(255) ,
+   nom VARCHAR(50) ,
+   tel VARCHAR(50)  NOT NULL,
+   adresse VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(id),
+   UNIQUE(tel)
+);
+
+CREATE TABLE Vente(
+   id VARCHAR(255) ,
+   date_vente DATE NOT NULL,
+   montant NUMERIC(15,2)   NOT NULL,
+   id_client VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_client) REFERENCES Client(id)
+);
+
+CREATE TABLE Livraison(
+   id VARCHAR(255) ,
+   date_livraison DATE NOT NULL,
+   id_vente VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_vente) REFERENCES Vente(id)
+);
+
+CREATE TABLE Achat(
+   id VARCHAR(255) ,
+   date_achat DATE NOT NULL,
+   id_facture VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_facture) REFERENCES FactureFournisseur(id)
+);
+
+CREATE TABLE Etat(
+   id VARCHAR(255) ,
+   val INTEGER NOT NULL,
+   desce VARCHAR(50) ,
+   PRIMARY KEY(id),
+   UNIQUE(val)
+);
+
+CREATE TABLE Product(
+   id VARCHAR(255) ,
+   name VARCHAR(255)  NOT NULL,
+   description VARCHAR(255) ,
+   prix_achat NUMERIC(15,2)  ,
+   prix_vente NUMERIC(15,2)  ,
+   est_achat BOOLEAN,
+   est_vente BOOLEAN,
+   id_unite VARCHAR(255)  NOT NULL,
+   id_type_product VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_unite) REFERENCES Unite(id),
+   FOREIGN KEY(id_type_product) REFERENCES TypeProduct(id)
+);
+
+CREATE TABLE Recette(
+   id VARCHAR(255) ,
+   cout_recette NUMERIC(15,2)   NOT NULL,
+   id_product VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_product) REFERENCES Product(id)
+);
+
+CREATE TABLE RecetteIngredient(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   id_ingredient VARCHAR(255)  NOT NULL,
+   id_recette VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_ingredient) REFERENCES Product(id),
+   FOREIGN KEY(id_recette) REFERENCES Recette(id)
+);
+
+CREATE TABLE BonPreCommandeDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   product VARCHAR(255)  NOT NULL,
+   id_pre_commande VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(product) REFERENCES Product(id),
+   FOREIGN KEY(id_pre_commande) REFERENCES BonPreCommande(id)
+);
+
+CREATE TABLE BonCommande(
+   id VARCHAR(255) ,
+   date_commande DATE NOT NULL,
+   id_fournisseur VARCHAR(255)  NOT NULL,
+   id_pre_commande VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_fournisseur) REFERENCES Fournisseur(id),
+   FOREIGN KEY(id_pre_commande) REFERENCES BonPreCommande(id)
+);
+
+CREATE TABLE BonCommandeDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   unit_price NUMERIC(15,2)   NOT NULL,
+   id_product VARCHAR(255)  NOT NULL,
+   id_commande VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_product) REFERENCES Product(id),
+   FOREIGN KEY(id_commande) REFERENCES BonCommande(id)
+);
+
+CREATE TABLE BonReception(
+   id VARCHAR(255) ,
+   date_reception DATE NOT NULL,
+   id_commande VARCHAR(255)  NOT NULL,
+   id_facture_fournisseur VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_commande) REFERENCES BonCommande(id),
+   FOREIGN KEY(id_facture_fournisseur) REFERENCES FactureFournisseur(id)
+);
+
+CREATE TABLE MvtStock(
+   id VARCHAR(255) ,
+   entree NUMERIC(15,2)   NOT NULL,
+   sortie NUMERIC(15,2)   NOT NULL,
+   date_mvt DATE NOT NULL,
+   id_source VARCHAR(255) ,
+   id_product VARCHAR(255)  NOT NULL,
+   id_type_mvt VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_product) REFERENCES Product(id),
+   FOREIGN KEY(id_type_mvt) REFERENCES TypeMvt(id)
+);
+
+CREATE TABLE Iventaire(
+   id VARCHAR(255) ,
+   date_inventaire DATE NOT NULL,
+   quantite_thorique NUMERIC(15,2)  ,
+   quantite_reel NUMERIC(15,2)  ,
+   id_product VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_product) REFERENCES Product(id)
+);
+
+CREATE TABLE BonReceptionDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   id_product VARCHAR(255)  NOT NULL,
+   id_livraison VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_product) REFERENCES Product(id),
+   FOREIGN KEY(id_livraison) REFERENCES BonReception(id)
+);
+
+CREATE TABLE CommandeClient(
+   id VARCHAR(255) ,
+   date_commande DATE NOT NULL,
+   montant NUMERIC(15,2)   NOT NULL,
+   id_etat VARCHAR(255)  NOT NULL,
+   id_client VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_etat) REFERENCES Etat(id),
+   FOREIGN KEY(id_client) REFERENCES Client(id)
+);
+
+CREATE TABLE CommandeDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   prix_unitaire NUMERIC(15,2)   NOT NULL,
+   id_produit VARCHAR(255)  NOT NULL,
+   id_commande VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_produit) REFERENCES Product(id),
+   FOREIGN KEY(id_commande) REFERENCES CommandeClient(id)
+);
+
+CREATE TABLE VenteDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   prix_unitaire NUMERIC(15,2)   NOT NULL,
+   id_vente VARCHAR(255)  NOT NULL,
+   id_produit VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_vente) REFERENCES Vente(id),
+   FOREIGN KEY(id_produit) REFERENCES Product(id)
+);
+
+CREATE TABLE LivraisonDetails(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   id_produit VARCHAR(255)  NOT NULL,
+   id_livraison VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_produit) REFERENCES Product(id),
+   FOREIGN KEY(id_livraison) REFERENCES Livraison(id)
+);
+
+CREATE TABLE ProductionDetatils(
+   id VARCHAR(255) ,
+   quantite NUMERIC(15,2)   NOT NULL,
+   id_production VARCHAR(255)  NOT NULL,
+   id_recette VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_production) REFERENCES Production(id),
+   FOREIGN KEY(id_recette) REFERENCES Recette(id)
+);
