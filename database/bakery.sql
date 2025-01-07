@@ -229,11 +229,11 @@ CREATE TABLE CustomerOrder(
    customer_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(status_id) REFERENCES Status(id),
-   FOREIGN KEY(customer_id) REFERENCES Customer(id)
+   FOREIGN KEY(customer_id) REFERENCES Customer(id)+*o-p
 );
 
 -- Table: DetailsCommandeClient (OrderDetails)
-CREATE TABLE OrderDetails(
+CREATE TABLE CustomerOrderDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
    unit_price NUMERIC(15,2) NOT NULL,
