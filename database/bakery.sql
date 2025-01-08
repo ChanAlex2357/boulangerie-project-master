@@ -234,7 +234,7 @@ CREATE TABLE CustomerOrder(
    FOREIGN KEY(customer_id) REFERENCES Customer(id)+*o-p
 );
 
--- Table: DetailsCommandeClient (OrderDetails)
+-- Table: DetailsCommandeClient (CustomerOrderDetails)
 CREATE TABLE CustomerOrderDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
