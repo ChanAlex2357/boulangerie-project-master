@@ -204,9 +204,11 @@ CREATE TABLE Production(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
    production_date DATE NOT NULL,
+   product_id VARCHAR(255),
    recipe_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(recipe_id) REFERENCES Recipe(id)
+   FOREIGN KEY(recipe_id) REFERENCES Recipe(id),
+   FOREIGN KEY(product_id) REFERENCES Product(id),
 );
 
 -- Table: DetailsReception (ReceptionDetails)
@@ -229,11 +231,11 @@ CREATE TABLE CustomerOrder(
    customer_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(status_id) REFERENCES Status(id),
-   FOREIGN KEY(customer_id) REFERENCES Customer(id)
+   FOREIGN KEY(customer_id) REFERENCES Customer(id)+*o-p
 );
 
 -- Table: DetailsCommandeClient (OrderDetails)
-CREATE TABLE OrderDetails(
+CREATE TABLE CustomerOrderDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
    unit_price NUMERIC(15,2) NOT NULL,
@@ -270,9 +272,9 @@ CREATE TABLE DeliveryDetails(
 CREATE TABLE ProductionDetails(
    id VARCHAR(255) ,
    quantite NUMERIC(15,2)   NOT NULL,
-   id_production VARCHAR(255)  NOT NULL,
-   id_recipe VARCHAR(255)  NOT NULL,
+   production_id VARCHAR(255)    NOT NULL,
+   ingredient_id VARCHAR(255)    NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_production) REFERENCES Production(id),
-   FOREIGN KEY(id_recipe) REFERENCES Recipe(id)
+   FOREIGN KEY(production_id) REFERENCES Production(id),
+   FOREIGN KEY(ingredient_id) REFERENCES Product(id),
 );
