@@ -1,4 +1,4 @@
 WEB-INF/lib/
 WEB-INF/classes/
 assest/vendor/*
-src/ressources/project.properties
+src/resources/*
