@@ -1,0 +1,298 @@
+CREATE SEQUENCE product_seq START WITH 1;
+CREATE SEQUENCE unit_seq START WITH 1;
+CREATE SEQUENCE product_type_seq START WITH 1;
+CREATE SEQUENCE supplier_seq START WITH 1;
+CREATE SEQUENCE preorder_seq START WITH 1;
+CREATE SEQUENCE movementtype_seq START WITH 1;
+CREATE SEQUENCE supplierinvoice_seq START WITH 1;
+CREATE SEQUENCE customer_seq START WITH 1;
+CREATE SEQUENCE sale_seq START WITH 1;
+CREATE SEQUENCE delivery_seq START WITH 1;
+CREATE SEQUENCE purchase_seq START WITH 1;
+CREATE SEQUENCE status_seq START WITH 1;
+CREATE SEQUENCE recipe_seq START WITH 1;
+CREATE SEQUENCE recipeingredient_seq START WITH 1;
+CREATE SEQUENCE preorderdetails_seq START WITH 1;
+CREATE SEQUENCE ordering_seq START WITH 1;
+CREATE SEQUENCE orderdetails_seq START WITH 1;
+CREATE SEQUENCE reception_seq START WITH 1;
+CREATE SEQUENCE stockmovement_seq START WITH 1;
+CREATE SEQUENCE inventory_seq START WITH 1;
+CREATE SEQUENCE production_seq START WITH 1;
+CREATE SEQUENCE receptiondetails_seq START WITH 1;
+CREATE SEQUENCE customerorder_seq START WITH 1;
+CREATE SEQUENCE customerorderdetails_seq START WITH 1;
+CREATE SEQUENCE saledetails_seq START WITH 1;
+CREATE SEQUENCE deliverydetails_seq START WITH 1;
+CREATE SEQUENCE productiondetails_seq START WITH 1;
+
+-- Sequence PRODUCT 
+CREATE OR REPLACE FUNCTION GET_PRODUCT_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('product_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_UNIT_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('unit_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_PRODUCTTYPE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('product_type_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_SUPPLIER_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('supplier_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_PREORDER_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('preorder_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_MOVEMENTTYPE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('movementtype_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_SUPPLIERINVOICE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('supplierinvoice_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_CUSTOMER_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('customer_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_SALE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('sale_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_DELIVERY_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('delivery_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_PURCHASE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('purchase_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_STATUS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('status_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_RECIPE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('recipe_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_RECIPEINGREDIENT_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('recipeingredient_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_PREORDERDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('preorderdetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_ORDERING_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('ordering_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_ORDERDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('orderdetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_RECEPTION_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('reception_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_STOCKMOVEMENT_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('stockmovement_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_INVENTORY_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('inventory_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_PRODUCTION_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('production_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_RECEPTIONDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('receptiondetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_CUSTOMERORDER_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('customerorder_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_CUSTOMERORDERDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('customerorderdetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_SALEDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('saledetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_DELIVERYDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('deliverydetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_PRODUCTIONDETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('productiondetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;

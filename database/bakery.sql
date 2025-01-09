@@ -208,7 +208,7 @@ CREATE TABLE Production(
    recipe_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(recipe_id) REFERENCES Recipe(id),
-   FOREIGN KEY(product_id) REFERENCES Product(id),
+   FOREIGN KEY(product_id) REFERENCES Product(id)
 );
 
 -- Table: DetailsReception (ReceptionDetails)
@@ -231,7 +231,7 @@ CREATE TABLE CustomerOrder(
    customer_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(status_id) REFERENCES Status(id),
-   FOREIGN KEY(customer_id) REFERENCES Customer(id)+*o-p
+   FOREIGN KEY(customer_id) REFERENCES Customer(id)
 );
 
 -- Table: DetailsCommandeClient (CustomerOrderDetails)
@@ -276,5 +276,5 @@ CREATE TABLE ProductionDetails(
    ingredient_id VARCHAR(255)    NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(production_id) REFERENCES Production(id),
-   FOREIGN KEY(ingredient_id) REFERENCES Product(id),
+   FOREIGN KEY(ingredient_id) REFERENCES Product(id)
 );
