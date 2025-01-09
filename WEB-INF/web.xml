@@ -1,11 +1,13 @@
 <web-app>
-    <!-- SERVLET SAMPLE -->
-    <!-- <servlet>
+<!-- SERVLET SAMPLE -->
+<!-- 
+    <servlet>
         <servlet-name>an unique name</servlet-name>
         <servlet-class>controller class</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>the unique name</servlet-name>
         <url-pattern>url associed to the controller</url-pattern>
-    </servlet-mapping> -->
+    </servlet-mapping> 
+-->
 </web-app>
