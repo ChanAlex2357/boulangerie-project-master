@@ -8,9 +8,9 @@ import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
-public class Unit extends ClassMap {
+public class MovementType extends ClassMap {
 
-    @Id(procedure = "GET_UNIT_SEQ", seq = "UN")
+    @Id(procedure = "GET_MOVEMENT_TYPE_SEQ", seq = "MT")
     String id;
     String value;
     String description;
@@ -18,9 +18,9 @@ public class Unit extends ClassMap {
     @Override
     public void controle(Connection arg0) throws Exception {}
 
-    public Unit() {}
+    public MovementType() {}
 
-    public Unit(String value, String description) {
+    public MovementType(String value, String description) {
         setValue(value);
         setDescription(description);
     }
