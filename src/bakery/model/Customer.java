@@ -10,7 +10,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class Customer extends ClassMap {
 
-    @Id(procedure = "GET_CUSTOMER_SEQ", seq = "CU")
+    @Id(procedure = "GET_CUSTOMER_SEQ", seq = "CUS")
     String id;
     String name;
     String phone;

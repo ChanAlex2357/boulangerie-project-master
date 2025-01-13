@@ -10,7 +10,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class Unit extends ClassMap {
 
-    @Id(procedure = "GET_UNIT_SEQ", seq = "UN")
+    @Id(procedure = "GET_UNIT_SEQ", seq = "UNI")
     String id;
     String value;
     String description;

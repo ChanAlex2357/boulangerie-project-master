@@ -11,7 +11,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class Delivery extends ClassMap {
 
-    @Id(procedure = "GET_DELIVERY_SEQ", seq = "DE")
+    @Id(procedure = "GET_DELIVERY_SEQ", seq = "DEL")
     String id;
     @Attribute(name = "delivery_date")
     Date deliveryDate;

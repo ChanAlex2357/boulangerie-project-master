@@ -11,7 +11,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class Sale extends ClassMap {
 
-    @Id(procedure = "GET_SALE_SEQ", seq = "SA")
+    @Id(procedure = "GET_SALE_SEQ", seq = "SAL")
     String id;
     @Attribute(name = "sale_date")
     Date saleDate;

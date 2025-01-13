@@ -11,7 +11,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class PreOrder extends ClassMap {
 
-    @Id(procedure = "GET_PREORDER_SEQ", seq = "PO")
+    @Id(procedure = "GET_PREORDER_SEQ", seq = "PRO")
     String id;
     @Attribute(name = "pre_order_date")
     Date preOrderDate;

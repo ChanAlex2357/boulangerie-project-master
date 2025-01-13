@@ -10,7 +10,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class MovementType extends ClassMap {
 
-    @Id(procedure = "GET_MOVEMENT_TYPE_SEQ", seq = "MT")
+    @Id(procedure = "GET_MOVEMENT_TYPE_SEQ", seq = "MTT")
     String id;
     String value;
     String description;

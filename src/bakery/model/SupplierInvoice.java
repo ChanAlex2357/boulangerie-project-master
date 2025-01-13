@@ -11,7 +11,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class SupplierInvoice extends ClassMap {
 
-    @Id(procedure = "GET_SUPPLIER_INVOICE_SEQ", seq = "SI")
+    @Id(procedure = "GET_SUPPLIER_INVOICE_SEQ", seq = "SIN")
     String id;
     @Attribute(name = "payment_due_date")
     Date paymentDueDate;

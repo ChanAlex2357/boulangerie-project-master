@@ -2,7 +2,6 @@ package bakery.model;
 
 import java.sql.Connection;
 
-import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
@@ -10,7 +9,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class ProductType extends ClassMap {
 
-    @Id(procedure = "GET_PRODUCT_TYPE_SEQ", seq = "PT")
+    @Id(procedure = "GET_PRODUCT_TYPE_SEQ", seq = "PTY")
     String id;
     String value;
     String description;
