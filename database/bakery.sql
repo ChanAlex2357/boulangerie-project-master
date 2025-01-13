@@ -310,7 +310,7 @@ CREATE TABLE ProductionDetails(
 );
 
 -- Table: RecetteType (RecipeType)
-CREATE TABLE RecipeType(
+CREATE TABLE RecipeTypes(
    recipe_id VARCHAR(255),
    type_id VARCHAR(255),
    PRIMARY KEY(recipe_id, type_id),

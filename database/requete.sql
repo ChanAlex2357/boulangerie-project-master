@@ -1,0 +1,27 @@
+genere les models correspondant aux tables de bakery.sql sauf :
+- Customer 
+- Delivery 
+- Ingredient 
+- IngredientType 
+- Inventory 
+- MovementType 
+- OrderDetails 
+- Ordering 
+- PreOrder 
+- PreOrderDetails 
+- Product 
+- Production 
+- ProductionDetails 
+- ProductType 
+- Purchase 
+- Reception 
+- ReceptionDetails 
+- Recipe 
+- RecipeIngredient 
+- RecipeType 
+- Sale 
+- Status 
+- StockMovement 
+- Supplier 
+- SupplierInvoice 
+- Unit
