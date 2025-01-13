@@ -7,9 +7,9 @@ import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
-public class Unit extends ClassMap {
+public class RecipeType extends ClassMap {
 
-    @Id(procedure = "GET_UNIT_SEQ", seq = "UNT")
+    @Id(procedure = "GET_RECIPE_TYPE_SEQ", seq = "RCT")
     String id;
     String value;
     String description;
@@ -17,9 +17,9 @@ public class Unit extends ClassMap {
     @Override
     public void controle(Connection arg0) throws Exception {}
 
-    public Unit() {}
+    public RecipeType() {}
 
-    public Unit(String value, String description) {
+    public RecipeType(String value, String description) {
         setValue(value);
         setDescription(description);
     }

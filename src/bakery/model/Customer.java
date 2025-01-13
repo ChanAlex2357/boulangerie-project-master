@@ -2,7 +2,6 @@ package bakery.model;
 
 import java.sql.Connection;
 
-import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;

@@ -2,28 +2,22 @@ package bakery.model;
 
 import java.sql.Connection;
 
+import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
-public class Unit extends ClassMap {
+public class Status extends ClassMap {
 
-    @Id(procedure = "GET_UNIT_SEQ", seq = "UNT")
+    @Id(procedure = "GET_STATUS_SEQ", seq = "STS")
     String id;
-    String value;
+    @Attribute(name = "value")
+    int value;
+    @Attribute(name = "description")
     String description;
 
-    @Override
-    public void controle(Connection arg0) throws Exception {}
-
-    public Unit() {}
-
-    public Unit(String value, String description) {
-        setValue(value);
-        setDescription(description);
-    }
-
+    // Getters and Setters
     public String getId() {
         return id;
     }
@@ -32,11 +26,11 @@ public class Unit extends ClassMap {
         this.id = id;
     }
 
-    public String getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -46,5 +40,11 @@ public class Unit extends ClassMap {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public void controle(Connection arg0) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'controle'");
     }
 }
