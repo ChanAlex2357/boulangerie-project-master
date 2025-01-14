@@ -5,7 +5,7 @@ import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
-@Entity(name = "Unit")
+@Entity
 public class Unit extends ClassMap {
 
     @Id(procedure = "GET_UNIT_SEQ" , seq = "UNT")

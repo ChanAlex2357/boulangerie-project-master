@@ -35,6 +35,7 @@ public class ProductController extends HttpServlet{
 
         try {
             Product product = new Product(name, description, isPurchase, isSale, purchase, sale, unitId, typeId);
+            
             resp.getWriter().println(product);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());

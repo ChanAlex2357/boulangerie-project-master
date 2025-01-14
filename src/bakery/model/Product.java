@@ -9,16 +9,13 @@ import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
-public class Product extends ClassMap{
+public class Product extends ClassMap {
 
     @Id(procedure = "GET_PRODUCT_SEQ" , seq = "PRD")
     String id;
     String name;
     String description;
-    double purhcasePrice;
     double salePrice;
-    boolean isPurchase;
-    boolean isSale;
 
     @Attribute(name = "unit_id")
     String unitId;
@@ -65,36 +62,29 @@ public class Product extends ClassMap{
         return id;
     }
 
-
     public void setId(String id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getDescription() {
         return description;
     }
 
-
     public void setDescription(String description) {
         this.description = description;
     }
 
-
     public double getPurhcasePrice() {
         return purhcasePrice;
     }
-
 
     public void setPurhcasePrice(double purhcasePrice) {
         if (isPurchase() && purhcasePrice <= 0) {
@@ -103,11 +93,9 @@ public class Product extends ClassMap{
         this.purhcasePrice = purhcasePrice;
     }
 
-
     public double getSalePrice() {
         return salePrice;
     }
-
 
     public void setSalePrice(double salePrice) {
         if (isSale() && salePrice <= 0) {
@@ -116,45 +104,36 @@ public class Product extends ClassMap{
         this.salePrice = salePrice;
     }
 
-
     public boolean isPurchase() {
         return isPurchase;
     }
-
 
     public void setPurchase(boolean isPurchase) {
         System.out.println();
         this.isPurchase = isPurchase;
     }
 
-
     public boolean isSale() {
         return isSale;
     }
-
 
     public void setSale(boolean isSale) {
         this.isSale = isSale;
     }
 
-
     public String getUnitId() {
         return unitId;
     }
-
 
     public void setUnitId(String unitId) {
         this.unitId = unitId;
     }
 
-
     public String getProductTypeId() {
         return productTypeId;
     }
 
-
     public void setProductTypeId(String productTypeId) {
         this.productTypeId = productTypeId;
-    }
-    
+    }    
 }

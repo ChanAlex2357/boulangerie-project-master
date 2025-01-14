@@ -81,91 +81,23 @@
                     <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 
                         <li>
-                            <a href="${pageContext.request.contextPath}/production-form">
+                            <a href="${pageContext.request.contextPath}/productform">
                                 <i class="bi bi-circle"></i><span> Production </span>
                             </a>
                         </li>
-                        <li>
-
-                            <a href="${pageContext.request.contextPath}/Insertion/matiereInsertion.jsp">
-                                <i class="bi bi-circle"></i><span> Matiere </span>
-                            </a>
-                        </li>
 
                         <li>
-                            <a href="${pageContext.request.contextPath}/PreInsertionStyle">
-                                <i class="bi bi-circle"></i><span> Style </span>
+                            <a href="${pageContext.request.contextPath}/vente-form">
+                                <i class="bi bi-circle"></i><span>Formulaire de  vente </span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="${pageContext.request.contextPath}/PreInsertionMeuble">
-                                <i class="bi bi-circle"></i><span> Meuble </span>
+                            <a href="${pageContext.request.contextPath}/vente-liste">
+                                <i class="bi bi-circle"></i><span>Liste des ventes </span>
                             </a>
                         </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/Insertion/volume.jsp">
-                                <i class="bi bi-circle"></i><span> Volume </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreInsertionQuantiteMatiere">
-                                <i class="bi bi-circle"></i><span> Quantit� Matiere </span>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreStock">
-                                <i class="bi bi-circle"></i><span> Stock </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreInsertionFabrication">
-                                <i class="bi bi-circle"></i><span> Fabrication </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PrePrixVente">
-                                <i class="bi bi-circle"></i><span> Prix de vente </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/Insertion/typempiasa.jsp">
-                                <i class="bi bi-circle"></i><span> Type mpiasa </span>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreInsertionMaindoeuvre">
-                                <i class="bi bi-circle"></i><span> Main d'oeuvre </span>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/Insertion/profil.jsp">
-                                <i class="bi bi-circle"></i><span> Profil </span>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreInsertionPersonne">
-                                <i class="bi bi-circle"></i><span> Personne </span>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreClient">
-                                <i class="bi bi-circle"></i><span> Client </span>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreVente">
-                                <i class="bi bi-circle"></i><span> Vente </span>
-                            </a>
-                        </li>
+                    
                         
                     </ul>
                 </li>
@@ -174,23 +106,10 @@
                         <i class="bi bi-layout-text-window-reverse"></i><span>Liste</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
                     <ul id="liste-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreListeStyle">
-                                <i class="bi bi-circle"></i><span>Liste styles</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="${pageContext.request.contextPath}/Liste/formMeublePrixfabrication.jsp">
-                                <i class="bi bi-circle"></i><span>Recherche par prix</span>
-                            </a>
                         
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreListParMatiere">
-                                <i class="bi bi-circle"></i><span>Liste par mati�re</span>
 
-                            </a>
-                        </li>
+                        
+                        
                         
                         <li>
                             <a href="${pageContext.request.contextPath}/Liste/formBenefice.jsp">
@@ -199,11 +118,7 @@
                             </a>
                         </li>
                         
-                        <li>
-                            <a href="${pageContext.request.contextPath}/PreStatistique">
-                                <i class="bi bi-circle"></i><span> Statistique </span>
-                            </a>
-                        </li>
+                        
                         
                     </ul>
                 </li>
