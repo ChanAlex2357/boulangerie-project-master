@@ -11,7 +11,6 @@ import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
 public class Product extends ClassMap {
-public class Product extends ClassMap {
 
     @Id(procedure = "GET_PRODUCT_SEQ", seq = "PRD")
     String id;

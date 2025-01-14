@@ -3,8 +3,8 @@ package bakery.controller.vente;
 import java.io.IOException;
 import java.sql.Connection;
 
-import bakery.model.ProductType;
-import bakery.model.Unit;
+import bakery.model.Customer;
+import bakery.model.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

@@ -1,9 +1,5 @@
 import java.sql.Connection;
 
-import bakery.data.ProductData;
-import bakery.data.ProductTypeData;
-import bakery.data.UnitData;
-import bakery.data.NatureTypeData;
 import bakery.data.IngredientTypeData;
 import bakery.util.Utilitaire;
 

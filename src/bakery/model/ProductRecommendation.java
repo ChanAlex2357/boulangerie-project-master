@@ -31,6 +31,20 @@ public class ProductRecommendation extends ClassMap {
         setDateMax(dateMax);
     }
 
+    public ProductRecommendation(String idProduct,String dateDebut,String dateFin) {
+        setProductId(idProduct);
+        setDateDebut(dateDebut);
+        setDateFin(dateFin);
+    }
+    public void setDateDebut(String dateDebut) {
+        Date db=Date.valueOf(dateDebut);
+        setDateMin(db);
+    }
+    public void setDateFin(String dateFin) {
+        Date df=Date.valueOf(dateFin);
+        setDateMax(df);
+    }
+
     public String getId() {
         return id;
     }

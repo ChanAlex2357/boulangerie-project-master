@@ -3,10 +3,12 @@ package bakery.controller.product;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import bakery.model.ProductRecommendation;
 import bakery.model.ProductRecommendationCpl;
+import bakery.model.ProductType;
 import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +21,8 @@ public class ProductRecommendationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection conn = Utilitaire.getConn()) {
+                ProductType[] productTypes = new ProductType().getAll(conn);
+                req.setAttribute("types", productTypes);
                 listRecommendations(req, conn);
                 Utilitaire.getLayoutDispatcher(req, "liste/product-recommendation-list").forward(req, resp);
         } catch (Exception e) {
@@ -29,6 +33,7 @@ public class ProductRecommendationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection conn = Utilitaire.getConn()) {
+          
             saveRecommendation(req, conn);
             resp.sendRedirect("/boulangerie/productrecommendations");
         } catch (Exception e) {
@@ -37,9 +42,17 @@ public class ProductRecommendationController extends HttpServlet {
     }
 
     private void listRecommendations(HttpServletRequest req, Connection conn) throws Exception {
-        // ProductRecommendation[] recommendations = new ProductRecommendation().getAll(conn);
-        List<ProductRecommendationCpl> liste = ProductRecommendationCpl.getAllInstances(conn);
-        req.setAttribute("recommendations", liste.toArray(new ProductRecommendationCpl[0]));
+        String dmin = req.getParameter("dmin");
+        String dmax = req.getParameter("dmax");
+        
+        try {
+            List<ProductRecommendationCpl> filtred = new ArrayList<>();
+            filtred = ProductRecommendationCpl.filter(conn, Date.valueOf(dmin), Date.valueOf(dmax));
+            req.setAttribute("recommendations", filtred.toArray(new ProductRecommendationCpl[0]));
+        } catch (Exception e) {
+            ProductRecommendationCpl[] liste = new ProductRecommendationCpl().getAll(conn);
+            req.setAttribute("recommendations", liste);
+        }
     }
     private void saveRecommendation(HttpServletRequest req, Connection conn) throws Exception {
         String productId = req.getParameter("productId");

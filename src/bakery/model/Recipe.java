@@ -108,8 +108,10 @@ public class Recipe extends ClassMap {
         String name = "Recette de "+this.getProductId();
         for (RecipeIngredient recipeIngredient : recipeIngredients) {
             cost += recipeIngredient.getIngredient(conn).getPurchasePrice() * recipeIngredient.getQuantity();
-
+            
         }
+        setRecipeCost(cost);
+        setName(name);
     }
 
     public Product getProduct(Connection conn) throws Exception {

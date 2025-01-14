@@ -17,21 +17,22 @@ JOIN
 JOIN 
     Unit u ON p.unit_id = u.id;
 
+DROP VIEW ProductRecommendationCpl;
 CREATE VIEW ProductRecommendationCpl AS
 SELECT 
-    pr.id AS recommendation_id,
-    pr.date_min AS recommendation_date_min,
-    pr.date_max AS recommendation_date_max,
-    pc.product_id,
-    pc.product_name,
-    pc.product_description,
-    pc.product_sale_price,
-    pc.product_type_id,
-    pc.product_type_value,
-    pc.product_type_description,
-    pc.unit_id,
-    pc.unit_value,
-    pc.unit_description
+    pr.id AS recommendationid,
+    pr.date_min AS recommendationdatemin,
+    pr.date_max AS recommendationdatemax,
+    pc.product_id as productid ,
+    pc.product_name as productname,
+    pc.product_description as productdescription,
+    pc.product_sale_price as productsaleprice,
+    pc.product_type_id as producttypeid,
+    pc.product_type_value as producttypevalue,
+    pc.product_type_description as producttypedescription,
+    pc.unit_id as unitid,
+    pc.unit_value as unitvalue,
+    pc.unit_description as unitdescription
 FROM 
     ProductRecommendation pr
 JOIN 

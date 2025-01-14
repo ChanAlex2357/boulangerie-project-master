@@ -15,8 +15,8 @@ import mg.jca.gfja.mapping.ClassMap;
 public class ProductRecommendationCpl extends ClassMap {
 
     String recommendationId;
-    String recommendationDateMin;
-    String recommendationDateMax;
+    Date recommendationDateMin;
+    Date recommendationDateMax;
     String productId;
     String productName;
     String productDescription;
@@ -40,8 +40,8 @@ public class ProductRecommendationCpl extends ClassMap {
             while (rs.next()) {
                 ProductRecommendationCpl recommendation = new ProductRecommendationCpl();
                 recommendation.setRecommendationId(rs.getString("recommendation_id"));
-                recommendation.setRecommendationDateMin(rs.getString("recommendation_date_min"));
-                recommendation.setRecommendationDateMax(rs.getString("recommendation_date_max"));
+                recommendation.setRecommendationDateMin(rs.getDate("recommendation_date_min"));
+                recommendation.setRecommendationDateMax(rs.getDate("recommendation_date_max"));
                 recommendation.setProductId(rs.getString("product_id"));
                 recommendation.setProductName(rs.getString("product_name"));
                 recommendation.setProductDescription(rs.getString("product_description"));
@@ -57,32 +57,60 @@ public class ProductRecommendationCpl extends ClassMap {
         }
         return recommendations;
     }
-
-    public static List<ProductRecommendationCpl> filter(Connection conn, Date dateMin, Date dateMax, double minPrice, double maxPrice, String productTypeId) throws Exception {
+    public static List<ProductRecommendationCpl> filter(Connection conn, String dateMin, String dateMax , String idProduct) throws Exception {
         List<ProductRecommendationCpl> recommendations = new ArrayList<>();
-        String query = "SELECT * FROM ProductRecommendationCpl WHERE recommendation_date_min >= ? AND recommendation_date_max <= ? AND product_sale_price BETWEEN ? AND ? AND product_type_id = ?";
+        String query = "SELECT * FROM ProductRecommendationCpl WHERE 1=1 ";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setDate(1, dateMin);
-            stmt.setDate(2, dateMax);
-            stmt.setDouble(3, minPrice);
-            stmt.setDouble(4, maxPrice);
-            stmt.setString(5, productTypeId);
+            if (dateMin != null && dateMin != "") {
+                query += " AND recommendationdatemin >= '"+dateMin+"' ";
+            }
+            if (dateMax != null && dateMax != "") {
+                query += " AND recommendationdatemax >= '"+dateMax+"' ";
+            }
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     ProductRecommendationCpl recommendation = new ProductRecommendationCpl();
-                    recommendation.setRecommendationId(rs.getString("recommendation_id"));
-                    recommendation.setRecommendationDateMin(rs.getString("recommendation_date_min"));
-                    recommendation.setRecommendationDateMax(rs.getString("recommendation_date_max"));
-                    recommendation.setProductId(rs.getString("product_id"));
-                    recommendation.setProductName(rs.getString("product_name"));
-                    recommendation.setProductDescription(rs.getString("product_description"));
-                    recommendation.setProductSalePrice(rs.getDouble("product_sale_price"));
-                    recommendation.setProductTypeId(rs.getString("product_type_id"));
-                    recommendation.setProductTypeValue(rs.getString("product_type_value"));
-                    recommendation.setProductTypeDescription(rs.getString("product_type_description"));
-                    recommendation.setUnitId(rs.getString("unit_id"));
-                    recommendation.setUnitValue(rs.getString("unit_value"));
-                    recommendation.setUnitDescription(rs.getString("unit_description"));
+                    recommendation.setRecommendationId(rs.getString("recommendationid"));
+                    recommendation.setRecommendationDateMin(rs.getDate("recommendationdatemin"));
+                    recommendation.setRecommendationDateMax(rs.getDate("recommendationdatemax"));
+                    recommendation.setProductId(rs.getString("productid"));
+                    recommendation.setProductName(rs.getString("productname"));
+                    recommendation.setProductDescription(rs.getString("productdescription"));
+                    recommendation.setProductSalePrice(rs.getDouble("productsaleprice"));
+                    recommendation.setProductTypeId(rs.getString("producttypeid"));
+                    recommendation.setProductTypeValue(rs.getString("producttypevalue"));
+                    recommendation.setProductTypeDescription(rs.getString("producttypedescription"));
+                    recommendation.setUnitId(rs.getString("unitid"));
+                    recommendation.setUnitValue(rs.getString("unitvalue"));
+                    recommendation.setUnitDescription(rs.getString("unitdescription"));
+                    recommendations.add(recommendation);
+                }
+            }
+        }
+        return recommendations;
+    }
+    public static List<ProductRecommendationCpl> filter(Connection conn, Date dateMin, Date dateMax) throws Exception {
+        List<ProductRecommendationCpl> recommendations = new ArrayList<>();
+        String query = "SELECT * FROM ProductRecommendationCpl WHERE recommendationdatemin >= ? AND recommendationdatemax <= ? ";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDate(1, dateMin);
+            stmt.setDate(2, dateMax);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductRecommendationCpl recommendation = new ProductRecommendationCpl();
+                    recommendation.setRecommendationId(rs.getString("recommendationid"));
+                    recommendation.setRecommendationDateMin(rs.getDate("recommendationdatemin"));
+                    recommendation.setRecommendationDateMax(rs.getDate("recommendationdatemax"));
+                    recommendation.setProductId(rs.getString("productid"));
+                    recommendation.setProductName(rs.getString("productname"));
+                    recommendation.setProductDescription(rs.getString("productdescription"));
+                    recommendation.setProductSalePrice(rs.getDouble("productsaleprice"));
+                    recommendation.setProductTypeId(rs.getString("producttypeid"));
+                    recommendation.setProductTypeValue(rs.getString("producttypevalue"));
+                    recommendation.setProductTypeDescription(rs.getString("producttypedescription"));
+                    recommendation.setUnitId(rs.getString("unitid"));
+                    recommendation.setUnitValue(rs.getString("unitvalue"));
+                    recommendation.setUnitDescription(rs.getString("unitdescription"));
                     recommendations.add(recommendation);
                 }
             }
@@ -99,19 +127,19 @@ public class ProductRecommendationCpl extends ClassMap {
         this.recommendationId = recommendationId;
     }
 
-    public String getRecommendationDateMin() {
+    public Date getRecommendationDateMin() {
         return recommendationDateMin;
     }
 
-    public void setRecommendationDateMin(String recommendationDateMin) {
+    public void setRecommendationDateMin(Date recommendationDateMin) {
         this.recommendationDateMin = recommendationDateMin;
     }
 
-    public String getRecommendationDateMax() {
+    public Date getRecommendationDateMax() {
         return recommendationDateMax;
     }
 
-    public void setRecommendationDateMax(String recommendationDateMax) {
+    public void setRecommendationDateMax(Date recommendationDateMax) {
         this.recommendationDateMax = recommendationDateMax;
     }
 
@@ -194,4 +222,6 @@ public class ProductRecommendationCpl extends ClassMap {
     public void setUnitDescription(String unitDescription) {
         this.unitDescription = unitDescription;
     }
+
+    // Removed duplicate methods
 }

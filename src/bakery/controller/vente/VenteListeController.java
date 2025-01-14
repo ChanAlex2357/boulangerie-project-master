@@ -1,16 +1,11 @@
 package bakery.controller.vente;
 
 import java.io.IOException;
-import java.sql.Connection;
-
-import bakery.model.ProductType;
-import bakery.model.Unit;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mg.jca.gfja.utils.DbUtils;
 
 @WebServlet(name="VenteListeController",urlPatterns = "/vente-liste")
 public class VenteListeController extends HttpServlet {
