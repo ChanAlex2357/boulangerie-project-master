@@ -3,9 +3,10 @@ package bakery.controller.product;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.List;
 
-import bakery.model.Product;
 import bakery.model.ProductRecommendation;
+import bakery.model.ProductRecommendationCpl;
 import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -36,8 +37,9 @@ public class ProductRecommendationController extends HttpServlet {
     }
 
     private void listRecommendations(HttpServletRequest req, Connection conn) throws Exception {
-        ProductRecommendation[] recommendations = new ProductRecommendation().getAll(conn);
-        req.setAttribute("recommendations", recommendations);
+        // ProductRecommendation[] recommendations = new ProductRecommendation().getAll(conn);
+        List<ProductRecommendationCpl> liste = ProductRecommendationCpl.getAllInstances(conn);
+        req.setAttribute("recommendations", liste.toArray(new ProductRecommendationCpl[0]));
     }
     private void saveRecommendation(HttpServletRequest req, Connection conn) throws Exception {
         String productId = req.getParameter("productId");

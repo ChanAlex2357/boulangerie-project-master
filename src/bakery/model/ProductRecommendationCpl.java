@@ -10,8 +10,11 @@ import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
-public class ProductCpl extends ClassMap {
+public class ProductRecommendationCpl extends ClassMap {
 
+    String recommendationId;
+    String recommendationDateMin;
+    String recommendationDateMax;
     String productId;
     String productName;
     String productDescription;
@@ -26,31 +29,58 @@ public class ProductCpl extends ClassMap {
     @Override
     public void controle(Connection arg0) throws Exception {}
 
-    public ProductCpl() {}
+    public ProductRecommendationCpl() {}
 
-    public static List<ProductCpl> getAllInstances(Connection conn) throws Exception {
-        List<ProductCpl> products = new ArrayList<>();
-        String query = "SELECT * FROM ProductCpl";
+    public static List<ProductRecommendationCpl> getAll(Connection conn) throws Exception {
+        List<ProductRecommendationCpl> recommendations = new ArrayList<>();
+        String query = "SELECT * FROM ProductRecommendationCpl";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                ProductCpl product = new ProductCpl();
-                product.setProductId(rs.getString("product_id"));
-                product.setProductName(rs.getString("product_name"));
-                product.setProductDescription(rs.getString("product_description"));
-                product.setProductSalePrice(rs.getDouble("product_sale_price"));
-                product.setProductTypeId(rs.getString("product_type_id"));
-                product.setProductTypeValue(rs.getString("product_type_value"));
-                product.setProductTypeDescription(rs.getString("product_type_description"));
-                product.setUnitId(rs.getString("unit_id"));
-                product.setUnitValue(rs.getString("unit_value"));
-                product.setUnitDescription(rs.getString("unit_description"));
-                products.add(product);
+                ProductRecommendationCpl recommendation = new ProductRecommendationCpl();
+                recommendation.setRecommendationId(rs.getString("recommendation_id"));
+                recommendation.setRecommendationDateMin(rs.getString("recommendation_date_min"));
+                recommendation.setRecommendationDateMax(rs.getString("recommendation_date_max"));
+                recommendation.setProductId(rs.getString("product_id"));
+                recommendation.setProductName(rs.getString("product_name"));
+                recommendation.setProductDescription(rs.getString("product_description"));
+                recommendation.setProductSalePrice(rs.getDouble("product_sale_price"));
+                recommendation.setProductTypeId(rs.getString("product_type_id"));
+                recommendation.setProductTypeValue(rs.getString("product_type_value"));
+                recommendation.setProductTypeDescription(rs.getString("product_type_description"));
+                recommendation.setUnitId(rs.getString("unit_id"));
+                recommendation.setUnitValue(rs.getString("unit_value"));
+                recommendation.setUnitDescription(rs.getString("unit_description"));
+                recommendations.add(recommendation);
             }
         }
-        return products;
+        return recommendations;
     }
 
     // Getters and Setters
+    public String getRecommendationId() {
+        return recommendationId;
+    }
+
+    public void setRecommendationId(String recommendationId) {
+        this.recommendationId = recommendationId;
+    }
+
+    public String getRecommendationDateMin() {
+        return recommendationDateMin;
+    }
+
+    public void setRecommendationDateMin(String recommendationDateMin) {
+        this.recommendationDateMin = recommendationDateMin;
+    }
+
+    public String getRecommendationDateMax() {
+        return recommendationDateMax;
+    }
+
+    public void setRecommendationDateMax(String recommendationDateMax) {
+        this.recommendationDateMax = recommendationDateMax;
+    }
+
     public String getProductId() {
         return productId;
     }
