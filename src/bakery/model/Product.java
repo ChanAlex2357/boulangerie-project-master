@@ -15,12 +15,7 @@ public class Product extends ClassMap {
     String id;
     String name;
     String description;
-    double purhcasePrice;
     double salePrice;
-    @Attribute(name = "is_purchase")
-    boolean isPurchase;
-    @Attribute(name = "is_sale")
-    boolean isSale;
 
     @Attribute(name = "unit_id")
     String unitId;
