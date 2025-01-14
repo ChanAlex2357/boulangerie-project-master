@@ -330,3 +330,13 @@ CREATE TABLE RecipeTypes(
    FOREIGN KEY(type_id) REFERENCES RecipeType(id)
 );
 
+-- Table: ProductRecommendation (ProductRecommendation)
+CREATE TABLE ProductRecommendation(
+   id VARCHAR(255),
+   product_id VARCHAR(255) NOT NULL,
+   date_min DATE NOT NULL,
+   date_max DATE NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(product_id) REFERENCES Product(id)
+);
+
