@@ -5,7 +5,6 @@ import java.sql.Connection;
 import bakery.model.Product;
 import bakery.model.ProductType;
 import bakery.model.Unit;
-import mg.jca.gfja.mapping.ClassMap;
 
 public class ProductData implements DataGen{
 

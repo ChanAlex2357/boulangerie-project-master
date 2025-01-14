@@ -83,11 +83,18 @@ CREATE TABLE Etat(
    UNIQUE(val)
 );
 
-CREATE TABLE nature_type(
-   id_nature_type VARCHAR(255) ,
+CREATE TABLE TypeIngredient(
+   id VARCHAR(255) ,
    val VARCHAR(255)  NOT NULL,
    desce VARCHAR(255) ,
-   PRIMARY KEY(id_nature_type)
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE NatureType(
+   id VARCHAR(255) ,
+   val VARCHAR(255)  NOT NULL,
+   desce VARCHAR(255) ,
+   PRIMARY KEY(id)
 );
 
 CREATE TABLE Product(
@@ -109,7 +116,7 @@ CREATE TABLE Recette(
    id_nature_type VARCHAR(255)  NOT NULL,
    id_product VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_nature_type) REFERENCES nature_type(id_nature_type),
+   FOREIGN KEY(id_nature_type) REFERENCES NatureType(id),
    FOREIGN KEY(id_product) REFERENCES Product(id)
 );
 
@@ -180,7 +187,8 @@ CREATE TABLE Iventaire(
 CREATE TABLE Production(
    id VARCHAR(255) ,
    date_production DATE NOT NULL,
-   cout_production VARCHAR(255) ,
+   cout_production NUMERIC(15,2)  ,
+   quantite NUMERIC(15,2)   NOT NULL,
    id_product VARCHAR(255)  NOT NULL,
    id_recette VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id),
@@ -241,23 +249,16 @@ CREATE TABLE LivraisonDetails(
    FOREIGN KEY(id_livraison) REFERENCES Livraison(id)
 );
 
-CREATE TABLE TypeIngredient(
-   id VARCHAR(255) ,
-   val VARCHAR(255)  NOT NULL,
-   desce VARCHAR(255) ,
-   id_nature_type VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_nature_type) REFERENCES nature_type(id_nature_type)
-);
-
 CREATE TABLE Ingredient(
    id VARCHAR(255) ,
    name VARCHAR(255)  NOT NULL,
    description VARCHAR(255) ,
    prix_achat NUMERIC(15,2)  ,
+   id_nature_type VARCHAR(255)  NOT NULL,
    id_unite VARCHAR(255)  NOT NULL,
    id_type_ingredient VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id),
+   FOREIGN KEY(id_nature_type) REFERENCES NatureType(id),
    FOREIGN KEY(id_unite) REFERENCES Unite(id),
    FOREIGN KEY(id_type_ingredient) REFERENCES TypeIngredient(id)
 );
@@ -270,14 +271,4 @@ CREATE TABLE RecetteIngredient(
    PRIMARY KEY(id),
    FOREIGN KEY(id_recette) REFERENCES Recette(id),
    FOREIGN KEY(id_ingredient) REFERENCES Ingredient(id)
-);
-
-CREATE TABLE ProductionDetatils(
-   id VARCHAR(255) ,
-   quantite NUMERIC(15,2)   NOT NULL,
-   id_ingredient VARCHAR(255)  NOT NULL,
-   id_production VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_ingredient) REFERENCES Ingredient(id),
-   FOREIGN KEY(id_production) REFERENCES Production(id)
 );

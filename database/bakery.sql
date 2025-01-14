@@ -108,9 +108,7 @@ CREATE TABLE IngredientType(
    id VARCHAR(255),
    value VARCHAR(255) NOT NULL,
    description VARCHAR(255),
-   nature_type_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(nature_type_id) REFERENCES NatureType(id)
 );
 
 -- Table: Ingredient (Ingredient)
@@ -120,10 +118,12 @@ CREATE TABLE Ingredient(
    description VARCHAR(255),
    purchase_price NUMERIC(15,2),
    unit_id VARCHAR(255) NOT NULL,
+   nature_type_id VARCHAR(255) NOT NULL,
    ingredient_type_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(unit_id) REFERENCES Unit(id),
    FOREIGN KEY(ingredient_type_id) REFERENCES IngredientType(id)
+   FOREIGN KEY(nature_type_id) REFERENCES NatureType(id)
 );
 
 -- Table: RecipeType (RecipeType)

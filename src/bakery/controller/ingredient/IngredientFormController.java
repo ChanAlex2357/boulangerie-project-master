@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 import bakery.model.Unit;
 import bakery.model.IngredientType;
+import bakery.model.NatureType;
 import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +20,8 @@ public class IngredientFormController extends HttpServlet {
         try (Connection conn = Utilitaire.getConn()) {
             Unit[] units = new Unit().getAll(conn);
             IngredientType[] ingredientTypes = new IngredientType().getAll(conn);
+             NatureType[] natureTypes = new NatureType().getAll(conn);
+            req.setAttribute("natureTypes", natureTypes);
             req.setAttribute("units", units);
             req.setAttribute("ingredientTypes", ingredientTypes);
             Utilitaire.getLayoutDispatcher(req, "insertion/ingredient-form").forward(req, resp);

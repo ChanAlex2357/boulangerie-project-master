@@ -2,7 +2,6 @@ package bakery.model;
 
 import java.sql.Connection;
 
-import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
@@ -14,18 +13,15 @@ public class IngredientType extends ClassMap {
     String id;
     String value;
     String description;
-    @Attribute(name = "nature_type_id")
-    String natureTypeId;
 
     @Override
     public void controle(Connection arg0) throws Exception {}
 
     public IngredientType() {}
 
-    public IngredientType(String value, String description, String natureTypeId) {
+    public IngredientType(String value, String description) {
         setValue(value);
         setDescription(description);
-        setNatureTypeId(natureTypeId);
     }
 
     public String getId() {
@@ -50,13 +46,5 @@ public class IngredientType extends ClassMap {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getNatureTypeId() {
-        return natureTypeId;
-    }
-
-    public void setNatureTypeId(String natureTypeId) {
-        this.natureTypeId = natureTypeId;
     }
 }

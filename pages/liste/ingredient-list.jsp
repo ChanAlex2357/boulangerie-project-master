@@ -23,6 +23,7 @@
                         <th scope="col">Prix d'achat</th>
                         <th scope="col">Id Unité</th>
                         <th scope="col">Id Type d'ingrédient</th>
+                        <th scope="col">Id Nature Type</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,7 @@
                         <td><%=ingredients[i].getPurchasePrice()%></td>
                         <td><%=ingredients[i].getUnitId()%></td>
                         <td><%=ingredients[i].getIngredientTypeId()%></td>
+                        <td><%=ingredients[i].getNatureTypepeId()%></td>
                     </tr>
                     <%
                         }
