@@ -54,7 +54,6 @@ public class Ordering extends ClassMap {
 
     @Override
     public void controle(Connection arg0) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'controle'");
+         
     }
 }
