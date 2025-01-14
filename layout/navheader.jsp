@@ -4,7 +4,7 @@
         <div class="navbar-brand-wrapper d-flex align-items-center col-auto">
             <!-- Logo For Mobile View -->
             <a class="navbar-brand navbar-brand-mobile" href="/">
-                <img class="img-fluid w-100" src="assets/img/logo-mini.png" alt="Graindashboard">
+                <!-- <img class="img-fluid w-100" src="assets/img/logo-mini.png" alt="Graindashboard"> -->
             </a>
             <!-- End Logo For Mobile View -->
 
