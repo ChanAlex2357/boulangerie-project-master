@@ -1,37 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Liste des Nature Types</title>
-    <link rel="stylesheet" href="/boulangerie/css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Liste des Nature Types</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Value</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Populate table rows dynamically -->
-                <% 
-                    NatureType[] natureTypes = (NatureType[]) request.getAttribute("natureTypes");
-                    for (NatureType natureType : natureTypes) {
-                %>
-                    <tr>
-                        <td><%= natureType.getId() %></td>
-                        <td><%= natureType.getValue() %></td>
-                        <td><%= natureType.getDescription() %></td>
-                    </tr>
-                <% 
-                    }
-                %>
-            </tbody>
-        </table>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="bakery.model.NatureType"%>
+<div class="py-4 px-3 px-md-4">
+    <div class="mb-3 mb-md-4 d-flex justify-content-between">
+        <div class="h6 mb-0">/Liste/NatureType</div>
     </div>
-</body>
-</html>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Liste de la nature des ingredients</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate table rows dynamically -->
+                    <% 
+                        NatureType[] natureTypes = (NatureType[]) request.getAttribute("natureTypes");
+                        for (NatureType natureType : natureTypes) {
+                    %>
+                        <tr>
+                            <td><%= natureType.getId() %></td>
+                            <td><%= natureType.getValue() %></td>
+                            <td><%= natureType.getDescription() %></td>
+                        </tr>
+                    <% 
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

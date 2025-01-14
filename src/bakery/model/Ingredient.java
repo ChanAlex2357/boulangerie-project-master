@@ -14,6 +14,7 @@ public class Ingredient extends ClassMap {
     String id;
     String name;
     String description;
+    @Attribute(name = "purchase_price")
     double purchasePrice;
     @Attribute(name = "unit_id")
     String unitId;

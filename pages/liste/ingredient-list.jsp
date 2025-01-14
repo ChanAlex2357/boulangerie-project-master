@@ -37,7 +37,7 @@
                         <td><%=ingredients[i].getPurchasePrice()%></td>
                         <td><%=ingredients[i].getUnitId()%></td>
                         <td><%=ingredients[i].getIngredientTypeId()%></td>
-                        <td><%=ingredients[i].getNatureTypepeId()%></td>
+                        <td><%=ingredients[i].getNatureTypeId()%></td>
                     </tr>
                     <%
                         }

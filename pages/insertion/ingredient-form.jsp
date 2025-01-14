@@ -1,3 +1,9 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="bakery.model.IngredientType"%>
+<%@page import="bakery.model.NatureType"%>
+<%@page import="bakery.model.Unit"%>
+
 <div class="py-4 px-3 px-md-4">
     <div class="mb-3 mb-md-4 d-flex justify-content-between">
         <div class="h3 mb-0">Insertion Ingrédient</div>

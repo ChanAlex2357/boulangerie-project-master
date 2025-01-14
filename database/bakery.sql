@@ -108,7 +108,7 @@ CREATE TABLE IngredientType(
    id VARCHAR(255),
    value VARCHAR(255) NOT NULL,
    description VARCHAR(255),
-   PRIMARY KEY(id),
+   PRIMARY KEY(id)
 );
 
 -- Table: Ingredient (Ingredient)
@@ -122,7 +122,7 @@ CREATE TABLE Ingredient(
    ingredient_type_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(unit_id) REFERENCES Unit(id),
-   FOREIGN KEY(ingredient_type_id) REFERENCES IngredientType(id)
+   FOREIGN KEY(ingredient_type_id) REFERENCES IngredientType(id),
    FOREIGN KEY(nature_type_id) REFERENCES NatureType(id)
 );
 
@@ -152,10 +152,10 @@ CREATE TABLE Recipe(
    id VARCHAR(255),
    recipe_cost NUMERIC(15,2) NOT NULL,
    name VARCHAR(255) NOT NULL,
-   nature_type_id VARCHAR(255) NOT NULL,
+   recipe_type_id VARCHAR(255) NOT NULL,
    product_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(nature_type_id) REFERENCES NatureType(id),
+   FOREIGN KEY(recipe_type_id) REFERENCES RecipeType(id),
    FOREIGN KEY(product_id) REFERENCES Product(id)
 );
 

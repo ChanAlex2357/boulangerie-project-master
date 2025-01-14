@@ -53,6 +53,9 @@
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/naturetypes">Type de Nature</a>
                 </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/recipes">Recette</a>
+                </li>
             </ul>
             <!-- End UI Components: listes -->
         </li>
@@ -92,6 +95,9 @@
                 </li>
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/naturetypeform">Type de Nature</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/recipeform">Recette</a>
                 </li>
             </ul>
             <!-- End UI Components: formulaires -->
