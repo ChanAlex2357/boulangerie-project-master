@@ -41,6 +41,18 @@
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/products">Produit</a>
                 </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/inventories">Inventaire</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/ingredienttypes">Type d'Ingrédient</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/ingredients">Ingrédient</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/naturetypes">Type de Nature</a>
+                </li>
             </ul>
             <!-- End UI Components: listes -->
         </li>
@@ -71,6 +83,15 @@
                 </li>
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/productform">Produit</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/ingredienttypeform">Type d'Ingrédient</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/ingredientform">Ingrédient</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/naturetypeform">Type de Nature</a>
                 </li>
             </ul>
             <!-- End UI Components: formulaires -->

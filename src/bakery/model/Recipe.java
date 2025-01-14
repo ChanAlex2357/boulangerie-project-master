@@ -12,9 +12,11 @@ public class Recipe extends ClassMap {
 
     @Id(procedure = "GET_RECIPE_SEQ", seq = "REC")
     String id;
+    @Attribute(name = "recipe_cost")
     double recipeCost;
     String name;
-    boolean isDerived;
+    @Attribute(name = "nature_type_id")
+    String natureTypeId;
     @Attribute(name = "product_id")
     String productId;
 
@@ -23,16 +25,11 @@ public class Recipe extends ClassMap {
 
     public Recipe() {}
 
-    public Recipe(String recipeCost, String name, boolean isDerived, String productId) {
+    public Recipe(double recipeCost, String name, String natureTypeId, String productId) {
         setRecipeCost(recipeCost);
         setName(name);
-        setDerived(isDerived);
+        setNatureTypeId(natureTypeId);
         setProductId(productId);
-    }
-
-    public void setRecipeCost(String value) {
-        double doubleValue = Double.valueOf(value);
-        setRecipeCost(doubleValue);
     }
 
     public String getId() {
@@ -59,12 +56,12 @@ public class Recipe extends ClassMap {
         this.name = name;
     }
 
-    public boolean isDerived() {
-        return isDerived;
+    public String getNatureTypeId() {
+        return natureTypeId;
     }
 
-    public void setDerived(boolean isDerived) {
-        this.isDerived = isDerived;
+    public void setNatureTypeId(String natureTypeId) {
+        this.natureTypeId = natureTypeId;
     }
 
     public String getProductId() {

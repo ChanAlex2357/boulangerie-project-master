@@ -1,6 +1,9 @@
 package bakery.model;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
+
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
@@ -79,5 +82,22 @@ public class Product extends ClassMap {
 
     public void setProductTypeId(String productTypeId) {
         this.productTypeId = productTypeId;
+    }
+
+
+    @Override
+    public ClassMap save(Connection conn) throws Exception {
+        super.save(conn);
+        generaInventory(conn);
+        return this;
+    }
+
+    public Inventory generaInventory(Connection conn) throws Exception{
+        Inventory inventory =  new Inventory();
+        inventory.setProductId(this.getId());
+        inventory.setActualQuantity(0);
+        inventory.setInventoryDate(Date.valueOf( LocalDate.now()));
+        inventory.save(conn);
+        return inventory;
     }
 }

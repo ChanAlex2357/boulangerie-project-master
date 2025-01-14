@@ -28,6 +28,7 @@ CREATE SEQUENCE productiondetails_seq START WITH 1;
 CREATE SEQUENCE ingredient_seq START WITH 1;
 CREATE SEQUENCE ingredienttype_seq START WITH 1;
 CREATE SEQUENCE recipetypes_seq START WITH 1;
+CREATE SEQUENCE naturetype_seq START WITH 1;
 
 -- Sequence PRODUCT 
 CREATE OR REPLACE FUNCTION GET_PRODUCT_SEQ()
@@ -373,6 +374,17 @@ DECLARE
     retour NUMERIC;
 BEGIN
    SELECT nextval('recipetypes_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence NATURETYPE 
+CREATE OR REPLACE FUNCTION GET_NATURETYPE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('naturetype_seq') INTO retour;
    RETURN retour;
 END;
 $$ LANGUAGE plpgsql;
