@@ -1,6 +1,8 @@
 package bakery.model;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class ProductRecommendationCpl extends ClassMap {
 
     public ProductRecommendationCpl() {}
 
-    public static List<ProductRecommendationCpl> getAll(Connection conn) throws Exception {
+    public static List<ProductRecommendationCpl> getAllInstances(Connection conn) throws Exception {
         List<ProductRecommendationCpl> recommendations = new ArrayList<>();
         String query = "SELECT * FROM ProductRecommendationCpl";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
@@ -51,6 +53,38 @@ public class ProductRecommendationCpl extends ClassMap {
                 recommendation.setUnitValue(rs.getString("unit_value"));
                 recommendation.setUnitDescription(rs.getString("unit_description"));
                 recommendations.add(recommendation);
+            }
+        }
+        return recommendations;
+    }
+
+    public static List<ProductRecommendationCpl> filter(Connection conn, Date dateMin, Date dateMax, double minPrice, double maxPrice, String productTypeId) throws Exception {
+        List<ProductRecommendationCpl> recommendations = new ArrayList<>();
+        String query = "SELECT * FROM ProductRecommendationCpl WHERE recommendation_date_min >= ? AND recommendation_date_max <= ? AND product_sale_price BETWEEN ? AND ? AND product_type_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDate(1, dateMin);
+            stmt.setDate(2, dateMax);
+            stmt.setDouble(3, minPrice);
+            stmt.setDouble(4, maxPrice);
+            stmt.setString(5, productTypeId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductRecommendationCpl recommendation = new ProductRecommendationCpl();
+                    recommendation.setRecommendationId(rs.getString("recommendation_id"));
+                    recommendation.setRecommendationDateMin(rs.getString("recommendation_date_min"));
+                    recommendation.setRecommendationDateMax(rs.getString("recommendation_date_max"));
+                    recommendation.setProductId(rs.getString("product_id"));
+                    recommendation.setProductName(rs.getString("product_name"));
+                    recommendation.setProductDescription(rs.getString("product_description"));
+                    recommendation.setProductSalePrice(rs.getDouble("product_sale_price"));
+                    recommendation.setProductTypeId(rs.getString("product_type_id"));
+                    recommendation.setProductTypeValue(rs.getString("product_type_value"));
+                    recommendation.setProductTypeDescription(rs.getString("product_type_description"));
+                    recommendation.setUnitId(rs.getString("unit_id"));
+                    recommendation.setUnitValue(rs.getString("unit_value"));
+                    recommendation.setUnitDescription(rs.getString("unit_description"));
+                    recommendations.add(recommendation);
+                }
             }
         }
         return recommendations;
