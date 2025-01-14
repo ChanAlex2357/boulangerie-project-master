@@ -6,6 +6,7 @@ import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
+import mg.jca.gfja.utils.GenUtils;
 
 @Entity
 public class RecipeIngredient extends ClassMap {
@@ -17,6 +18,8 @@ public class RecipeIngredient extends ClassMap {
     String recipeId;
     @Attribute(name = "ingredient_id")
     String ingredientId;
+
+    Ingredient ingredient;
 
     @Override
     public void controle(Connection arg0) throws Exception {}
@@ -65,4 +68,20 @@ public class RecipeIngredient extends ClassMap {
     public void setIngredientId(String ingredientId) {
         this.ingredientId = ingredientId;
     }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+    public Ingredient getIngredient(Connection conn)throws Exception {
+        if (this.ingredient == null) {
+            Ingredient ref = new Ingredient();
+            ref.setId(this.getIngredientId());
+            Ingredient[] ingredients= new GenUtils().searchEntities(ref,"", conn);
+            if (ingredients.length > 0) {
+                setIngredient( ingredients[0]);
+            }
+        }
+        return ingredient;
+    }
+    
 }

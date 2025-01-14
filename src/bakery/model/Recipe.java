@@ -21,6 +21,8 @@ public class Recipe extends ClassMap {
     @Attribute(name = "product_id")
     String productId;
 
+    Product product;
+
     RecipeIngredient[] recipeIngredients;
 
     public RecipeIngredient[] getRecipeIngredients(Connection conn) throws Exception {
@@ -86,17 +88,36 @@ public class Recipe extends ClassMap {
         this.productId = productId;
     }
 
-    public RecipeIngredient[] multiSave(Connection conn) throws Exception {
-        this.save(conn);
+    public RecipeIngredient[] saveWithIngredients(Connection conn) throws Exception {
         if (this.recipeIngredients == null || this.recipeIngredients.length < 0) {
             throw new Exception("La recette doit posseder au mois un ingredient");            
         }
+        initDetailsAttributs(conn);
+        this.save(conn);
         RecipeIngredient[] recipeIngredients = getRecipeIngredients(conn);
         for (RecipeIngredient recipeIngredient : recipeIngredients) {
-            recipeIngredient.setIngredientId(this.getId());
+            recipeIngredient.setRecipeId(this.getId());
             recipeIngredient.save(conn);
         }
         return recipeIngredients;
     }
 
+    private void initDetailsAttributs(Connection conn)throws Exception{
+        RecipeIngredient[] recipeIngredients = getRecipeIngredients(conn);
+        double cost = 0;
+        String name = "Recette de "+this.getProductId();
+        for (RecipeIngredient recipeIngredient : recipeIngredients) {
+            cost += recipeIngredient.getIngredient(conn).getPurchasePrice() * recipeIngredient.getQuantity();
+
+        }
+    }
+
+    public Product getProduct(Connection conn) throws Exception {
+        if (this.product == null) {
+            Product ref = new Product();
+            ref.setId(this.getProductId());
+            this.product = Product.getById( new Product(), this.getProductId(), conn);
+        }
+        return product;
+    }
 }
