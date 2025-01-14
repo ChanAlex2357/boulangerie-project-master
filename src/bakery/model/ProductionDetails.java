@@ -1,7 +1,6 @@
 package bakery.model;
 
 import java.sql.Connection;
-
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
@@ -10,14 +9,25 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class ProductionDetails extends ClassMap {
 
-    @Id(procedure = "GET_PRODUCTIONDETAILS_SEQ", seq = "PD")
+    @Id(procedure = "GET_PRODUCTIONDETAILS_SEQ", seq = "PDE")
     String id;
     @Attribute(name = "quantity")
     double quantity;
-    @Attribute(name = "production_id")
-    String productionId;
     @Attribute(name = "ingredient_id")
     String ingredientId;
+    @Attribute(name = "production_id")
+    String productionId;
+
+    @Override
+    public void controle(Connection arg0) throws Exception {}
+
+    public ProductionDetails() {}
+
+    public ProductionDetails(double quantity, String ingredientId, String productionId) {
+        setQuantity(quantity);
+        setIngredientId(ingredientId);
+        setProductionId(productionId);
+    }
 
     // Getters and Setters
     public String getId() {
@@ -36,14 +46,6 @@ public class ProductionDetails extends ClassMap {
         this.quantity = quantity;
     }
 
-    public String getProductionId() {
-        return productionId;
-    }
-
-    public void setProductionId(String productionId) {
-        this.productionId = productionId;
-    }
-
     public String getIngredientId() {
         return ingredientId;
     }
@@ -52,9 +54,11 @@ public class ProductionDetails extends ClassMap {
         this.ingredientId = ingredientId;
     }
 
-    @Override
-    public void controle(Connection arg0) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'controle'");
+    public String getProductionId() {
+        return productionId;
+    }
+
+    public void setProductionId(String productionId) {
+        this.productionId = productionId;
     }
 }

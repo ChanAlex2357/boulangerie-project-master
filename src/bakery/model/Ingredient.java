@@ -14,23 +14,27 @@ public class Ingredient extends ClassMap {
     String id;
     String name;
     String description;
+    @Attribute(name = "purchase_price")
     double purchasePrice;
     @Attribute(name = "unit_id")
     String unitId;
     @Attribute(name = "ingredient_type_id")
     String ingredientTypeId;
+    @Attribute(name = "nature_type_id")
+    String natureTypeId;
 
     @Override
     public void controle(Connection arg0) throws Exception {}
 
     public Ingredient() {}
 
-    public Ingredient(String name, String description, String purchasePrice, String unitId, String ingredientTypeId) {
+    public Ingredient(String name, String description, String purchasePrice, String unitId, String ingredientTypeId, String natureId) {
         setName(name);
         setDescription(description);
         setPurchasePrice(purchasePrice);
         setUnitId(unitId);
         setIngredientTypeId(ingredientTypeId);
+        setNatureTypeId(natureId);
     }
 
     public void setPurchasePrice(String value) {
@@ -84,5 +88,13 @@ public class Ingredient extends ClassMap {
 
     public void setIngredientTypeId(String ingredientTypeId) {
         this.ingredientTypeId = ingredientTypeId;
+    }
+
+    public String getNatureTypeId() {
+        return natureTypeId;
+    }
+
+    public void setNatureTypeId(String natureTypeId) {
+        this.natureTypeId = natureTypeId;
     }
 }

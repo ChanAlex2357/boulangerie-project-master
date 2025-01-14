@@ -9,7 +9,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class IngredientType extends ClassMap {
 
-    @Id(procedure = "GET_INGREDIENT_TYPE_SEQ", seq = "INGT")
+    @Id(procedure = "GET_INGREDIENT_TYPE_SEQ", seq = "IGT")
     String id;
     String value;
     String description;

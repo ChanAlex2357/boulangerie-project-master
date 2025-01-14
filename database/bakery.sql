@@ -1,4 +1,4 @@
--- Table: TypeProduct (TypeProduct)
+-- Table: ProductType (ProductType)
 CREATE TABLE ProductType(
    id VARCHAR(255),
    value VARCHAR(50) NOT NULL,
@@ -6,7 +6,16 @@ CREATE TABLE ProductType(
    PRIMARY KEY(id)
 );
 
--- Table: Unite (Unit)
+-- Table: NatureType (NatureType)
+CREATE TABLE NatureType(
+   id VARCHAR(255),
+   value VARCHAR(255) NOT NULL,
+   description VARCHAR(255),
+   PRIMARY KEY(id)
+);
+
+
+-- Table: Unit (Unit)
 CREATE TABLE Unit(
    id VARCHAR(255),
    value VARCHAR(50) NOT NULL,
@@ -14,7 +23,7 @@ CREATE TABLE Unit(
    PRIMARY KEY(id)
 );
 
--- Table: Fournisseur (Supplier)
+-- Table: Supplier (Supplier)
 CREATE TABLE Supplier(
    id VARCHAR(255),
    name VARCHAR(255) NOT NULL,
@@ -22,14 +31,14 @@ CREATE TABLE Supplier(
    PRIMARY KEY(id)
 );
 
--- Table: BonPreCommande (PreOrder)
+-- Table: PreOrder (PreOrder)
 CREATE TABLE PreOrder(
    id VARCHAR(255),
    pre_order_date DATE NOT NULL,
    PRIMARY KEY(id)
 );
 
--- Table: TypeMvt (MovementType)
+-- Table: MovementType (MovementType)
 CREATE TABLE MovementType(
    id VARCHAR(255),
    value VARCHAR(50) NOT NULL,
@@ -37,7 +46,7 @@ CREATE TABLE MovementType(
    PRIMARY KEY(id)
 );
 
--- Table: FactureFournisseur (SupplierInvoice)
+-- Table: SupplierInvoice (SupplierInvoice)
 CREATE TABLE SupplierInvoice(
    id VARCHAR(255),
    payment_due_date DATE NOT NULL,
@@ -47,7 +56,7 @@ CREATE TABLE SupplierInvoice(
    FOREIGN KEY(supplier_id) REFERENCES Supplier(id)
 );
 
--- Table: Client (Customer)
+-- Table: Customer (Customer)
 CREATE TABLE Customer(
    id VARCHAR(255),
    name VARCHAR(50),
@@ -57,7 +66,7 @@ CREATE TABLE Customer(
    UNIQUE(phone)
 );
 
--- Table: Vente (Sale)
+-- Table: Sale (Sale)
 CREATE TABLE Sale(
    id VARCHAR(255),
    sale_date DATE NOT NULL,
@@ -67,7 +76,7 @@ CREATE TABLE Sale(
    FOREIGN KEY(customer_id) REFERENCES Customer(id)
 );
 
--- Table: Livraison (Delivery)
+-- Table: Delivery (Delivery)
 CREATE TABLE Delivery(
    id VARCHAR(255),
    delivery_date DATE NOT NULL,
@@ -76,7 +85,7 @@ CREATE TABLE Delivery(
    FOREIGN KEY(sale_id) REFERENCES Sale(id)
 );
 
--- Table: Achat (Purchase)
+-- Table: Purchase (Purchase)
 CREATE TABLE Purchase(
    id VARCHAR(255),
    purchase_date DATE NOT NULL,
@@ -85,7 +94,7 @@ CREATE TABLE Purchase(
    FOREIGN KEY(invoice_id) REFERENCES SupplierInvoice(id)
 );
 
--- Table: Etat (Status)
+-- Table: Status (Status)
 CREATE TABLE Status(
    id VARCHAR(255),
    value INTEGER NOT NULL,
@@ -94,7 +103,7 @@ CREATE TABLE Status(
    UNIQUE(value)
 );
 
--- Table: TypeIngredient (IngredientType)
+-- Table: IngredientType (IngredientType)
 CREATE TABLE IngredientType(
    id VARCHAR(255),
    value VARCHAR(255) NOT NULL,
@@ -109,13 +118,15 @@ CREATE TABLE Ingredient(
    description VARCHAR(255),
    purchase_price NUMERIC(15,2),
    unit_id VARCHAR(255) NOT NULL,
+   nature_type_id VARCHAR(255) NOT NULL,
    ingredient_type_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(unit_id) REFERENCES Unit(id),
-   FOREIGN KEY(ingredient_type_id) REFERENCES IngredientType(id)
+   FOREIGN KEY(ingredient_type_id) REFERENCES IngredientType(id),
+   FOREIGN KEY(nature_type_id) REFERENCES NatureType(id)
 );
 
--- Table: TypeRecette (RecipeType)
+-- Table: RecipeType (RecipeType)
 CREATE TABLE RecipeType(
    id VARCHAR(255),
    value VARCHAR(255),
@@ -136,18 +147,19 @@ CREATE TABLE Product(
    FOREIGN KEY(product_type_id) REFERENCES ProductType(id)
 );
 
--- Table: Recette (Recipe)
+-- Table: Recipe (Recipe)
 CREATE TABLE Recipe(
    id VARCHAR(255),
    recipe_cost NUMERIC(15,2) NOT NULL,
    name VARCHAR(255) NOT NULL,
-   is_derived BOOLEAN,
+   recipe_type_id VARCHAR(255) NOT NULL,
    product_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
+   FOREIGN KEY(recipe_type_id) REFERENCES RecipeType(id),
    FOREIGN KEY(product_id) REFERENCES Product(id)
 );
 
--- Table: RecetteIngredient (RecipeIngredient)
+-- Table: RecipeIngredient (RecipeIngredient)
 CREATE TABLE RecipeIngredient(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -158,7 +170,7 @@ CREATE TABLE RecipeIngredient(
    FOREIGN KEY(ingredient_id) REFERENCES Ingredient(id)
 );
 
--- Table: BonPreCommandeDetails (PreOrderDetails)
+-- Table: PreOrderDetails (PreOrderDetails)
 CREATE TABLE PreOrderDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -169,7 +181,7 @@ CREATE TABLE PreOrderDetails(
    FOREIGN KEY(pre_order_id) REFERENCES PreOrder(id)
 );
 
--- Table: BonCommande (Order)
+-- Table: Ordering (Ordering)
 CREATE TABLE Ordering(
    id VARCHAR(255),
    order_date DATE NOT NULL,
@@ -180,7 +192,7 @@ CREATE TABLE Ordering(
    FOREIGN KEY(pre_order_id) REFERENCES PreOrder(id)
 );
 
--- Table: BonCommandeDetails (OrderDetails)
+-- Table: OrderDetails (OrderDetails)
 CREATE TABLE OrderDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -192,7 +204,7 @@ CREATE TABLE OrderDetails(
    FOREIGN KEY(order_id) REFERENCES Ordering(id)
 );
 
--- Table: BonReception (Reception)
+-- Table: Reception (Reception)
 CREATE TABLE Reception(
    id VARCHAR(255),
    reception_date DATE NOT NULL,
@@ -203,7 +215,7 @@ CREATE TABLE Reception(
    FOREIGN KEY(supplier_invoice_id) REFERENCES SupplierInvoice(id)
 );
 
--- Table: MvtStock (StockMovement)
+-- Table: StockMovement (StockMovement)
 CREATE TABLE StockMovement(
    id VARCHAR(255),
    entry NUMERIC(15,2) NOT NULL,
@@ -217,7 +229,7 @@ CREATE TABLE StockMovement(
    FOREIGN KEY(movement_type_id) REFERENCES MovementType(id)
 );
 
--- Table: Iventaire (Inventory)
+-- Table: Inventory (Inventory)
 CREATE TABLE Inventory(
    id VARCHAR(255),
    inventory_date DATE NOT NULL,
@@ -240,7 +252,18 @@ CREATE TABLE Production(
    FOREIGN KEY(recipe_id) REFERENCES Recipe(id)
 );
 
--- Table: BonReceptionDetails (ReceptionDetails)
+-- Table: ProductionDetails (ProductionDetails)
+CREATE TABLE ProductionDetails(
+   id VARCHAR(255),
+   quantity NUMERIC(15,2) NOT NULL,
+   ingredient_id VARCHAR(255) NOT NULL,
+   production_id VARCHAR(255) NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(ingredient_id) REFERENCES Ingredient(id),
+   FOREIGN KEY(production_id) REFERENCES Production(id)
+);
+
+-- Table: ReceptionDetails (ReceptionDetails)
 CREATE TABLE ReceptionDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -251,7 +274,7 @@ CREATE TABLE ReceptionDetails(
    FOREIGN KEY(delivery_id) REFERENCES Reception(id)
 );
 
--- Table: CommandeClient (CustomerOrder)
+-- Table: CustomerOrder (CustomerOrder)
 CREATE TABLE CustomerOrder(
    id VARCHAR(255),
    order_date DATE NOT NULL,
@@ -263,7 +286,7 @@ CREATE TABLE CustomerOrder(
    FOREIGN KEY(customer_id) REFERENCES Customer(id)
 );
 
--- Table: CommandeDetails (CustomerOrderDetails)
+-- Table: CustomerOrderDetails (CustomerOrderDetails)
 CREATE TABLE CustomerOrderDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -275,7 +298,7 @@ CREATE TABLE CustomerOrderDetails(
    FOREIGN KEY(order_id) REFERENCES CustomerOrder(id)
 );
 
--- Table: VenteDetails (SaleDetails)
+-- Table: SaleDetails (SaleDetails)
 CREATE TABLE SaleDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -287,7 +310,7 @@ CREATE TABLE SaleDetails(
    FOREIGN KEY(sale_id) REFERENCES Sale(id)
 );
 
--- Table: LivraisonDetails (DeliveryDetails)
+-- Table: DeliveryDetails (DeliveryDetails)
 CREATE TABLE DeliveryDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
@@ -298,18 +321,7 @@ CREATE TABLE DeliveryDetails(
    FOREIGN KEY(delivery_id) REFERENCES Delivery(id)
 );
 
--- Table: ProductionDetails (ProductionDetails)
-CREATE TABLE ProductionDetails(
-   id VARCHAR(255),
-   quantity NUMERIC(15,2) NOT NULL,
-   production_id VARCHAR(255) NOT NULL,
-   ingredient_id VARCHAR(255) NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(production_id) REFERENCES Production(id),
-   FOREIGN KEY(ingredient_id) REFERENCES Ingredient(id)
-);
-
--- Table: RecetteType (RecipeType)
+-- Table: RecipeTypes (RecipeTypes)
 CREATE TABLE RecipeTypes(
    recipe_id VARCHAR(255),
    type_id VARCHAR(255),
@@ -317,3 +329,4 @@ CREATE TABLE RecipeTypes(
    FOREIGN KEY(recipe_id) REFERENCES Recipe(id),
    FOREIGN KEY(type_id) REFERENCES RecipeType(id)
 );
+

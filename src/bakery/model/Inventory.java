@@ -1,6 +1,7 @@
 package bakery.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
@@ -13,7 +14,7 @@ public class Inventory extends ClassMap {
     @Id(procedure = "GET_INVENTORY_SEQ", seq = "INV")
     String id;
     @Attribute(name = "inventory_date")
-    java.sql.Date inventoryDate;
+    Date inventoryDate;
     @Attribute(name = "theoretical_quantity")
     double theoreticalQuantity;
     @Attribute(name = "actual_quantity")
@@ -64,7 +65,6 @@ public class Inventory extends ClassMap {
 
     @Override
     public void controle(Connection arg0) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'controle'");
+         
     }
 }
