@@ -1,9 +1,8 @@
-package bakery.controller.product;
+package bakery.controller.producttype;
 
 import java.io.IOException;
 import java.sql.Connection;
-
-import bakery.model.Product;
+import bakery.model.ProductType;
 import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,15 +10,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ProductController", urlPatterns = "/products")
-public class ProductController extends HttpServlet {
+@WebServlet(name = "ProductTypeController", urlPatterns = "/producttypes")
+public class ProductTypeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         try (Connection conn = Utilitaire.getConn()) {
             delete(req, action, conn);
             liste(req, conn);
-            Utilitaire.getLayoutDispatcher(req, "liste/product-list").forward(req, resp);
+            Utilitaire.getLayoutDispatcher(req, "liste/producttype-list").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());
         }
@@ -28,20 +27,17 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        String name = req.getParameter("name");
+        String value = req.getParameter("value");
         String description = req.getParameter("description");
-        String salePrice = req.getParameter("salePrice");
-        String unitId = req.getParameter("unitId");
-        String productTypeId = req.getParameter("productTypeId");
 
-        Product product = new Product(name, description, salePrice, unitId, productTypeId);
+        ProductType productType = new ProductType(value, description);
         try (Connection conn = Utilitaire.getConn()) {
             try {
                 conn.setAutoCommit(false);
                 if (action.equals("modif")) {
                     // Modification
                 } else {
-                    product.save(conn);
+                    productType.save(conn);
                 }
                 conn.commit();
             } catch (Exception e) {
@@ -52,25 +48,25 @@ public class ProductController extends HttpServlet {
             e.printStackTrace(resp.getWriter());
         }
 
-        resp.sendRedirect("/boulangerie/products");
+        resp.sendRedirect("/boulangerie/producttypes");
     }
 
-    private Product delete(HttpServletRequest request, String action, Connection conn) {
+    private ProductType delete(HttpServletRequest request, String action, Connection conn) {
         if (action != null && !action.equals("delete")) {
             return null;
         }
-        String idProduct = request.getParameter("idproducts");
-        Product product = new Product();
-        if (idProduct == null) {
+        String idProductType = request.getParameter("idproducttypes");
+        ProductType productType = new ProductType();
+        if (idProductType == null) {
             return null;
         }
-        product.setId(idProduct);
-        return product;
+        productType.setId(idProductType);
+        return productType;
     }
 
-    private Product[] liste(HttpServletRequest req, Connection conn) throws Exception {
-        Product[] products = new Product().getAll(conn);
-        req.setAttribute("products", products);
-        return products;
+    private ProductType[] liste(HttpServletRequest req, Connection conn) throws Exception {
+        ProductType[] productTypes = new ProductType().getAll(conn);
+        req.setAttribute("productTypes", productTypes);
+        return productTypes;
     }
 }

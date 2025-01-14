@@ -25,6 +25,9 @@ CREATE SEQUENCE customerorderdetails_seq START WITH 1;
 CREATE SEQUENCE saledetails_seq START WITH 1;
 CREATE SEQUENCE deliverydetails_seq START WITH 1;
 CREATE SEQUENCE productiondetails_seq START WITH 1;
+CREATE SEQUENCE ingredient_seq START WITH 1;
+CREATE SEQUENCE ingredienttype_seq START WITH 1;
+CREATE SEQUENCE recipetypes_seq START WITH 1;
 
 -- Sequence PRODUCT 
 CREATE OR REPLACE FUNCTION GET_PRODUCT_SEQ()
@@ -293,6 +296,83 @@ DECLARE
     retour NUMERIC;
 BEGIN
    SELECT nextval('productiondetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence CUSTOMERORDER 
+CREATE OR REPLACE FUNCTION GET_CUSTOMER_ORDER_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('customerorder_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence CUSTOMERORDERDETAILS 
+CREATE OR REPLACE FUNCTION GET_CUSTOMER_ORDER_DETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('customerorderdetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence SALEDETAILS 
+CREATE OR REPLACE FUNCTION GET_SALE_DETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('saledetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence DELIVERYDETAILS 
+CREATE OR REPLACE FUNCTION GET_DELIVERY_DETAILS_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('deliverydetails_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence INGREDIENT 
+CREATE OR REPLACE FUNCTION GET_INGREDIENT_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('ingredient_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence INGREDIENTTYPE 
+CREATE OR REPLACE FUNCTION GET_INGREDIENT_TYPE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('ingredienttype_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence RECIPETYPES 
+CREATE OR REPLACE FUNCTION GET_RECIPETYPES_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('recipetypes_seq') INTO retour;
    RETURN retour;
 END;
 $$ LANGUAGE plpgsql;
