@@ -9,7 +9,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class ProductType extends ClassMap {
 
-    @Id(procedure = "GET_PRODUCT_TYPE_SEQ", seq = "PTY")
+    @Id(procedure = "GET_PRODUCTTYPE_SEQ", seq = "PTY")
     String id;
     String value;
     String description;
