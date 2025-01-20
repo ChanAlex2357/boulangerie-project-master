@@ -59,6 +59,12 @@
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/productrecommendations">Recommandations de Produit</a>
                 </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/recipies">Recommandations de Produit</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/customers">Clients</a>
+                </li>
             </ul>
             <!-- End UI Components: listes -->
         </li>
@@ -102,6 +108,7 @@
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/recipeform">Recette</a>
                 </li>
+    
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/productrecommendationform">Formulaire de Recommandation de Produit</a>
                 </li>
