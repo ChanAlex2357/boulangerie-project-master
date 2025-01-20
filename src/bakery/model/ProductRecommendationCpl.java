@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,9 +90,15 @@ public class ProductRecommendationCpl extends ClassMap {
         }
         return recommendations;
     }
-    public static List<ProductRecommendationCpl> filter(Connection conn, Date dateMin, Date dateMax) throws Exception {
+    public static List<ProductRecommendationCpl> filter(Connection conn, Date dateMin, Date dateMax , String annee) throws Exception {
+        int anneeInt = Integer.parseInt(annee);
         List<ProductRecommendationCpl> recommendations = new ArrayList<>();
-        String query = "SELECT * FROM ProductRecommendationCpl WHERE recommendationdatemin >= ? AND recommendationdatemax <= ? ";
+        if (anneeInt <= 0 ) {
+            dateMin = Date.valueOf(LocalDate.of(anneeInt, 1, 1));
+            dateMax = Date.valueOf(LocalDate.of(anneeInt, 12, 31));
+        }
+        String query = "SELECT * FROM ProductRecommendationCpl WHERE recommendationdatemin <= ? AND recommendationdatemax >= ? ";
+        // String query = "SELECT * FROM ProductRecommendationCpl WHERE recommendationdatemin <= '2024-1-1' AND recommendationdatemax >= '2024-12-31'";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setDate(1, dateMin);
             stmt.setDate(2, dateMax);

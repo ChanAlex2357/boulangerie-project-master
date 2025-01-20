@@ -19,6 +19,10 @@
                 <label for="">Date Max</label>
                 <input type="date" name="dmax" class="form-control" id="">
             </div>
+            <div class="form-group mx-3 gap-2">
+                <label for="">Annee</label>
+                <input type="number" name="annee" id="" class="form-control">
+            </div>
         </div>
     
         <!-- <div class="form-group">

@@ -44,10 +44,11 @@ public class ProductRecommendationController extends HttpServlet {
     private void listRecommendations(HttpServletRequest req, Connection conn) throws Exception {
         String dmin = req.getParameter("dmin");
         String dmax = req.getParameter("dmax");
+        String annee = req.getParameter("annee");
         
         try {
             List<ProductRecommendationCpl> filtred = new ArrayList<>();
-            filtred = ProductRecommendationCpl.filter(conn, Date.valueOf(dmin), Date.valueOf(dmax));
+            filtred = ProductRecommendationCpl.filter(conn, Date.valueOf(dmin), Date.valueOf(dmax) , annee);
             req.setAttribute("recommendations", filtred.toArray(new ProductRecommendationCpl[0]));
         } catch (Exception e) {
             ProductRecommendationCpl[] liste = new ProductRecommendationCpl().getAll(conn);
