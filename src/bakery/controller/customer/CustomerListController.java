@@ -1,30 +1,28 @@
-package bakery.controller.vente;
+package bakery.controller.customer;
 
 import java.io.IOException;
 import java.sql.Connection;
 
 import bakery.model.Customer;
-import bakery.model.Product;
-import bakery.model.ProductCpl;
+import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mg.jca.gfja.utils.DbUtils;
-import mg.jca.gfja.utils.GenUtils;
 
-@WebServlet(name="VenteFormController",urlPatterns = "/vente-form")
-public class VenteFormController extends HttpServlet {
+@WebServlet(name="CustomerListController",urlPatterns = "/customers")
+public class CustomerListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Connection conn = new DbUtils().getConn();
         try {
-            ProductCpl[] products = new ProductCpl().getAll(conn);
-            /// Recuperer la liste des donnee pour le formulaire
-            Customer[] customers = new Customer().getAll(conn);
+            String dmin = req.getParameter("dmin");
+            String dmax = req.getParameter("dmax");
+            Customer[] customers = new Customer().filter(dmin , dmax,conn);
             req.setAttribute("customers", customers);
-            req.getRequestDispatcher("pages/layout.jsp?page=vente-form.jsp").forward(req, resp);
+            Utilitaire.getLayoutDispatcher(req,"liste/customer-list").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());
         }
