@@ -37,3 +37,17 @@ FROM
     ProductRecommendation pr
 JOIN 
     ProductCpl pc ON pr.product_id = pc.product_id;
+
+CREATE VIEW CustomersSale AS
+SELECT 
+    s.id AS sale_id,
+    s.sale_date AS sale_date,
+    s.amount AS sale_amount,
+    c.id AS customer_id,
+    c.name AS customer_name,
+    c.phone AS customer_phone,
+    c.address AS customer_address
+FROM 
+    Sale s
+JOIN 
+    Customer c ON s.customer_id = c.id;
