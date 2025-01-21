@@ -19,6 +19,8 @@ public class Sale extends ClassMap {
     double amount;
     @Attribute(name = "customer_id")
     String customerId;
+    @Attribute(name = "baker_id")
+    String bakerId;
 
     SaleDetails[] saleDetails;
     
@@ -112,5 +114,13 @@ public class Sale extends ClassMap {
             setSaleDetails(details);
         }
         return saleDetails;
+    }
+
+    public String getBakerId() {
+        return bakerId;
+    }
+
+    public void setBakerId(String bakerId) {
+        this.bakerId = bakerId;
     }
 }
