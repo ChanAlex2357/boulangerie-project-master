@@ -11,6 +11,7 @@ CREATE SEQUENCE delivery_seq START WITH 1;
 CREATE SEQUENCE purchase_seq START WITH 1;
 CREATE SEQUENCE status_seq START WITH 1;
 CREATE SEQUENCE recipe_seq START WITH 1;
+CREATE SEQUENCE recipe_type_seq START WITH 1;
 CREATE SEQUENCE recipeingredient_seq START WITH 1;
 CREATE SEQUENCE preorderdetails_seq START WITH 1;
 CREATE SEQUENCE ordering_seq START WITH 1;
@@ -158,6 +159,16 @@ DECLARE
     retour NUMERIC;
 BEGIN
    SELECT nextval('recipe_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GET_RECIPETYPE_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('recipe_type_seq') INTO retour;
    RETURN retour;
 END;
 $$ LANGUAGE plpgsql;

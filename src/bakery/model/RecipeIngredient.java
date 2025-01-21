@@ -76,9 +76,9 @@ public class RecipeIngredient extends ClassMap {
         if (this.ingredient == null) {
             Ingredient ref = new Ingredient();
             ref.setId(this.getIngredientId());
-            Ingredient[] ingredients= new GenUtils().searchEntities(ref,"", conn);
+            ClassMap[] ingredients= new GenUtils().searchEntities(ref,"", conn);
             if (ingredients.length > 0) {
-                setIngredient( ingredients[0]);
+                setIngredient( (Ingredient)ingredients[0]);
             }
         }
         return ingredient;

@@ -16,13 +16,42 @@ public class SaleDetails extends ClassMap {
     double quantity;
     @Attribute(name = "unit_price")
     double unitPrice;
-    @Attribute(name = "recipe_id")
-    String recipeId;
+    @Attribute(name = "product_id")
+    String productId;
     @Attribute(name = "sale_id")
     String saleId;
 
+    public SaleDetails(){}
+    public SaleDetails(String product, String quantite) {
+        setProductId(product);
+        setQuantity(Double.valueOf(quantite));
+    }
+
+    public static SaleDetails[] generateSaleDetails(String[] products, String[] quantity , Connection conn) throws Exception {
+        SaleDetails[] saleDetails = new SaleDetails[products.length];
+        for (int i = 0; i < saleDetails.length; i++) {
+            saleDetails[i] = new SaleDetails(products[i],quantity[i]);
+        }
+        return saleDetails;
+    }
+
+    public Product getProduct(Connection conn) throws Exception{
+        Product ref = new Product();
+        ref.setId(getProductId());
+        return new Product().getById(conn);
+    }
+
     @Override
-    public void controle(Connection arg0) throws Exception {}
+    public void controle(Connection arg0) throws Exception {
+        if (this.getSaleId() == null ) {
+            throw new Exception("Vente details dessocier d'une vente");
+        }
+
+        if (unitPrice <=0) {
+            Product product = getProduct(arg0);
+            unitPrice = product.getSalePrice();
+        }
+    }
 
     public String getId() {
         return id;
@@ -48,13 +77,7 @@ public class SaleDetails extends ClassMap {
         this.unitPrice = unitPrice;
     }
 
-    public String getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(String recipeId) {
-        this.recipeId = recipeId;
-    }
+    
 
     public String getSaleId() {
         return saleId;
@@ -64,6 +87,11 @@ public class SaleDetails extends ClassMap {
         this.saleId = saleId;
     }
 
-    // Getters and Setters
-    // ...existing code...
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 }

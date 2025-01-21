@@ -303,10 +303,10 @@ CREATE TABLE SaleDetails(
    id VARCHAR(255),
    quantity NUMERIC(15,2) NOT NULL,
    unit_price NUMERIC(15,2) NOT NULL,
-   recipe_id VARCHAR(255) NOT NULL,
+   product_id VARCHAR(255) NOT NULL,
    sale_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(recipe_id) REFERENCES Recipe(id),
+   FOREIGN KEY(product_id) REFERENCES Product(id),
    FOREIGN KEY(sale_id) REFERENCES Sale(id)
 );
 

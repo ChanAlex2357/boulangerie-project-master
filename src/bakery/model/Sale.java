@@ -7,6 +7,7 @@ import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
+import mg.jca.gfja.utils.GenUtils;
 
 @Entity
 public class Sale extends ClassMap {
@@ -18,6 +19,10 @@ public class Sale extends ClassMap {
     double amount;
     @Attribute(name = "customer_id")
     String customerId;
+
+    SaleDetails[] saleDetails;
+    
+    
 
     @Override
     public void controle(Connection arg0) throws Exception {}
@@ -60,5 +65,48 @@ public class Sale extends ClassMap {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public void setSaleDate(String date) {
+        this.saleDate = Date.valueOf(date);
+    }
+
+    public SaleDetails[] getSaleDetails(){
+        return this.saleDetails;
+    }
+
+    public void calculerSaleAmount(){
+        double amount = 0;
+        for (SaleDetails saleDetails : getSaleDetails()) {
+            amount += saleDetails.getQuantity() * saleDetails.unitPrice;
+        }
+        setAmount(amount);
+    }
+    public void saveDetails(Connection conn)throws Exception{
+        for (SaleDetails saleDetails : getSaleDetails(conn)) {
+            saleDetails.setSaleId(this.getId());
+            saleDetails.save(conn);
+        }
+    }
+    @Override
+    public ClassMap save(Connection conn) throws Exception {
+        makePK(conn);
+        calculerSaleAmount();
+        super.save(conn);
+        saveDetails(conn);
+        return this;
+    }
+
+    public void setSaleDetails(SaleDetails[] saleDetails) {
+        this.saleDetails = saleDetails;
+    }
+    public SaleDetails[] getSaleDetails(Connection conn) throws Exception {
+        if (saleDetails == null || saleDetails.length < 0 ) {
+            SaleDetails ref = new SaleDetails();
+            ref.setSaleId(this.getId());
+            SaleDetails[] details = new GenUtils().searchEntities(ref,"", conn);
+            setSaleDetails(details);
+        }
+        return saleDetails;
     }
 }

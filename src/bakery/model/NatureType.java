@@ -7,7 +7,6 @@ import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
 public class NatureType extends ClassMap {
-
     @Id(procedure = "GET_NATURETYPE_SEQ", seq = "NAT")
     String id;
     String value;

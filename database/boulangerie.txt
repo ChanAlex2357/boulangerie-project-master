@@ -97,6 +97,13 @@ CREATE TABLE NatureType(
    PRIMARY KEY(id)
 );
 
+CREATE TABLE TypeRecette(
+   id VARCHAR(255) ,
+   val VARCHAR(255)  NOT NULL,
+   desce VARCHAR(255) ,
+   PRIMARY KEY(id)
+);
+
 CREATE TABLE Product(
    id VARCHAR(255) ,
    name VARCHAR(255)  NOT NULL,
@@ -113,10 +120,10 @@ CREATE TABLE Recette(
    id VARCHAR(255) ,
    cout_recette NUMERIC(15,2)   NOT NULL,
    name VARCHAR(255)  NOT NULL,
-   id_nature_type VARCHAR(255)  NOT NULL,
+   id_recipe_type VARCHAR(255)  NOT NULL,
    id_product VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_nature_type) REFERENCES NatureType(id),
+   FOREIGN KEY(id_recipe_type) REFERENCES TypeRecette(id),
    FOREIGN KEY(id_product) REFERENCES Product(id)
 );
 

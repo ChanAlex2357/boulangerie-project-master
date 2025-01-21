@@ -9,7 +9,7 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class RecipeType extends ClassMap {
 
-    @Id(procedure = "GET_RECIPE_TYPE_SEQ", seq = "RCT")
+    @Id(procedure = "GET_RECIPETYPE_SEQ", seq = "RCT")
     String id;
     String value;
     String description;

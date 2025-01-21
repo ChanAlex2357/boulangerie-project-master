@@ -16,7 +16,7 @@ public class Recipe extends ClassMap {
     @Attribute(name = "recipe_cost")
     double recipeCost;
     String name;
-    @Attribute(name = "recipe_type_id")
+    @Attribute(name = "nature_type_id")
     String recipeTypeId;
     @Attribute(name = "product_id")
     String productId;

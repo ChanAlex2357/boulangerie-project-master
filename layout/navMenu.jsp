@@ -60,9 +60,6 @@
                     <a class="side-nav-menu-link" href="/boulangerie/productrecommendations">Recommandations de Produit</a>
                 </li>
                 <li class="side-nav-menu-item">
-                    <a class="side-nav-menu-link" href="/boulangerie/recipies">Recommandations de Produit</a>
-                </li>
-                <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/customers">Clients</a>
                 </li>
                 <li class="side-nav-menu-item">

@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bakery.model.Client"%>
+<%@page import="bakery.model.Customer"%>
 <%@page import="bakery.model.Product"%>
 
 <div class="py-4 px-3 px-md-4">
@@ -15,15 +15,15 @@
                 <input type="date" id="saleDate" name="date" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="saleClientId">Client</label>
-                <select id="saleClientId" name="clientId" class="form-control" required>
-                    <option value="">Sélectionner le client</option>
+                <label for="saleCustomerId">Customer</label>
+                <select id="saleCustomerId" name="CustomerId" class="form-control" required>
+                    <option value="">Sélectionner le Customer</option>
                     <!-- Populate options dynamically -->
                     <% 
-                        Client[] clients = (Client[]) request.getAttribute("customers");
-                        for (Client client : clients) {
+                        Customer[] Customers = (Customer[]) request.getAttribute("customers");
+                        for (Customer Customer : Customers) {
                     %>
-                        <option value="<%=client.getId()%>"><%=client.getName()%></option>
+                        <option value="<%=Customer.getId()%>"><%=Customer.getName()%></option>
                     <% 
                         }
                     %>

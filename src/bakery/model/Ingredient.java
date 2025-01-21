@@ -7,7 +7,7 @@ import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
-@Entity
+@Entity(name = "Ingredient")
 public class Ingredient extends ClassMap {
 
     @Id(procedure = "GET_INGREDIENT_SEQ", seq = "ING")

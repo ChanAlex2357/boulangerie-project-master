@@ -13,18 +13,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mg.jca.gfja.utils.DbUtils;
 
-@WebServlet(name="VenteFormController",urlPatterns = "/saleform")
+@WebServlet(name="SaleFormController",urlPatterns = "/saleform")
 public class SaleFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = new DbUtils().getConn();
-        try {
+        try (Connection conn = new DbUtils().getConn()) {
             Product[] products = new Product().getAll(conn);
             /// Recuperer la liste des donnee pour le formulaire
             Customer[] customers = new Customer().getAll(conn);
             req.setAttribute("customers", customers);
             req.setAttribute("products", products);
-            Utilitaire.getLayoutDispatcher(req,"insertion/sale-form");
+            Utilitaire.getLayoutDispatcher(req,"insertion/sale-form").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());
         }
