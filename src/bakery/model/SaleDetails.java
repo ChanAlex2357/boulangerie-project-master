@@ -31,6 +31,7 @@ public class SaleDetails extends ClassMap {
         SaleDetails[] saleDetails = new SaleDetails[products.length];
         for (int i = 0; i < saleDetails.length; i++) {
             saleDetails[i] = new SaleDetails(products[i],quantity[i]);
+            saleDetails[i].calculerUnitPrice(conn);
         }
         return saleDetails;
     }
@@ -42,14 +43,20 @@ public class SaleDetails extends ClassMap {
     }
 
     @Override
-    public void controle(Connection arg0) throws Exception {
+    public void controle(Connection conn) throws Exception {
         if (this.getSaleId() == null ) {
             throw new Exception("Vente details dessocier d'une vente");
         }
 
-        if (unitPrice <=0) {
-            Product product = getProduct(arg0);
-            unitPrice = product.getSalePrice();
+        if (getUnitPrice() <=0) {
+            calculerUnitPrice(conn);
+        }
+    }
+
+    public void calculerUnitPrice(Connection conn) throws Exception{
+        if (getUnitPrice() <=0) {
+            Product product = getProduct(conn);
+            setUnitPrice(product.getSalePrice());
         }
     }
 

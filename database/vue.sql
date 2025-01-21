@@ -51,3 +51,6 @@ FROM
     Sale s
 JOIN 
     Customer c ON s.customer_id = c.id;
+
+
+CREATE OR REPLACE VIEW

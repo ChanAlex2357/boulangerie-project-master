@@ -31,30 +31,4 @@ public class RecipeFormController extends HttpServlet {
             e.printStackTrace(resp.getWriter());
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (Connection conn = Utilitaire.getConn()) {
-            String productId = req.getParameter("productId");
-            String[] ingredientIds = req.getParameterValues("ingredientId[]");
-            String[] quantities = req.getParameterValues("quantity[]");
-
-            Recipe recipe = new Recipe();
-            recipe.setProductId(productId);
-
-            RecipeIngredient[] recipeIngredients = new RecipeIngredient[ingredientIds.length];
-            for (int i = 0; i < ingredientIds.length; i++) {
-                RecipeIngredient recipeIngredient = new RecipeIngredient();
-                recipeIngredient.setIngredientId(ingredientIds[i]);
-                recipeIngredient.setQuantity(Double.parseDouble(quantities[i]));
-                recipeIngredients[i] = recipeIngredient;
-            }
-            recipe.setRecipeIngredients(recipeIngredients);
-            recipe.saveWithIngredients(conn);
-
-            resp.sendRedirect("/boulangerie/recipelist");
-        } catch (Exception e) {
-            e.printStackTrace(resp.getWriter());
-        }
-    }
 }

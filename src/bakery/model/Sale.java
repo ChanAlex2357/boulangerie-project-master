@@ -75,12 +75,17 @@ public class Sale extends ClassMap {
         return this.saleDetails;
     }
 
-    public void calculerSaleAmount(){
+    public void calculerSaleAmount(Connection conn)throws Exception{
         double amount = 0;
-        for (SaleDetails saleDetails : getSaleDetails()) {
-            amount += saleDetails.getQuantity() * saleDetails.unitPrice;
+        String msg = "";
+        for (SaleDetails saleDetails : getSaleDetails(conn)) {
+            double qte = saleDetails.getQuantity();
+            double pu = saleDetails.getUnitPrice(); 
+            amount +=  qte * pu;
+            msg +=" > "+qte+" * "+pu+" | \n";
         }
         setAmount(amount);
+        // throw new NumberFormatException(msg+" ==> "+amount);
     }
     public void saveDetails(Connection conn)throws Exception{
         for (SaleDetails saleDetails : getSaleDetails(conn)) {
@@ -90,8 +95,7 @@ public class Sale extends ClassMap {
     }
     @Override
     public ClassMap save(Connection conn) throws Exception {
-        makePK(conn);
-        calculerSaleAmount();
+        calculerSaleAmount(conn);
         super.save(conn);
         saveDetails(conn);
         return this;

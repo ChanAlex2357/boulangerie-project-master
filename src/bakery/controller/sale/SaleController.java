@@ -2,7 +2,6 @@ package bakery.controller.sale;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 
 import bakery.model.Sale;
 import bakery.model.SaleDetails;

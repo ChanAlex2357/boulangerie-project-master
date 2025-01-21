@@ -3,9 +3,6 @@ package bakery.controller.recipe;
 import java.io.IOException;
 import java.sql.Connection;
 
-import bakery.model.Ingredient;
-import bakery.model.NatureType;
-import bakery.model.Product;
 import bakery.model.Recipe;
 import bakery.model.RecipeIngredient;
 import bakery.util.Utilitaire;
