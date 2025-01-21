@@ -11,10 +11,10 @@
             <!-- Logo For Desktop View -->
             <a class="navbar-brand navbar-brand-desktop mt-2" href="/">
                 <p class="side-nav-hide-on-closed">   
-                    <img class="side-nav-hide-on-closed" src="assets/img/ecommerce.png"  style="width: auto; height: 33px;">
+                    <img class="side-nav-hide-on-closed" src="assets/img/bakery.jpg"  style="width: auto; height: 33px;">
                     <strong class="offset-1"> Bakery Chan </strong>
                 </P>
-                <img class="side-nav-show-on-closed" src="assets/img/ecommerce.png" style="width: auto; height: 33px;">
+                <img class="side-nav-show-on-closed" src="assets/img/bakery.jpg" style="width: auto; height: 33px;">
 
             </a>
             <!-- End Logo For Desktop View -->

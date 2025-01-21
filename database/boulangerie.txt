@@ -50,23 +50,6 @@ CREATE TABLE Client(
    UNIQUE(tel)
 );
 
-CREATE TABLE Vente(
-   id VARCHAR(255) ,
-   date_vente DATE NOT NULL,
-   montant NUMERIC(15,2)   NOT NULL,
-   id_client VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_client) REFERENCES Client(id)
-);
-
-CREATE TABLE Livraison(
-   id VARCHAR(255) ,
-   date_livraison DATE NOT NULL,
-   id_vente VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_vente) REFERENCES Vente(id)
-);
-
 CREATE TABLE Achat(
    id VARCHAR(255) ,
    date_achat DATE NOT NULL,
@@ -101,6 +84,13 @@ CREATE TABLE TypeRecette(
    id VARCHAR(255) ,
    val VARCHAR(255)  NOT NULL,
    desce VARCHAR(255) ,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE Baker(
+   id VARCHAR(255) ,
+   name VARCHAR(255) ,
+   commission NUMERIC(15,2)   NOT NULL,
    PRIMARY KEY(id)
 );
 
@@ -235,14 +225,33 @@ CREATE TABLE CommandeDetails(
    FOREIGN KEY(id_commande) REFERENCES CommandeClient(id)
 );
 
+CREATE TABLE Vente(
+   id VARCHAR(255) ,
+   date_vente DATE NOT NULL,
+   montant NUMERIC(15,2)   NOT NULL,
+   id_baker VARCHAR(255)  NOT NULL,
+   id_client VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_baker) REFERENCES Baker(id),
+   FOREIGN KEY(id_client) REFERENCES Client(id)
+);
+
 CREATE TABLE VenteDetails(
    id VARCHAR(255) ,
    quantite NUMERIC(15,2)   NOT NULL,
    prix_unitaire NUMERIC(15,2)   NOT NULL,
-   id_recette VARCHAR(255)  NOT NULL,
+   id_produit VARCHAR(255)  NOT NULL,
    id_vente VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_recette) REFERENCES Recette(id),
+   FOREIGN KEY(id_produit) REFERENCES Product(id),
+   FOREIGN KEY(id_vente) REFERENCES Vente(id)
+);
+
+CREATE TABLE Livraison(
+   id VARCHAR(255) ,
+   date_livraison DATE NOT NULL,
+   id_vente VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
    FOREIGN KEY(id_vente) REFERENCES Vente(id)
 );
 
@@ -268,6 +277,17 @@ CREATE TABLE Ingredient(
    FOREIGN KEY(id_nature_type) REFERENCES NatureType(id),
    FOREIGN KEY(id_unite) REFERENCES Unite(id),
    FOREIGN KEY(id_type_ingredient) REFERENCES TypeIngredient(id)
+);
+
+CREATE TABLE BakerCommission(
+   id VARCHAR(255) ,
+   montant NUMERIC(15,2)  ,
+   date_commission VARCHAR(255)  NOT NULL,
+   id_sale VARCHAR(255)  NOT NULL,
+   id_baker VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_sale) REFERENCES Vente(id),
+   FOREIGN KEY(id_baker) REFERENCES Baker(id)
 );
 
 CREATE TABLE RecetteIngredient(
