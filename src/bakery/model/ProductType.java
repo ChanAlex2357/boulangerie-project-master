@@ -6,16 +6,46 @@ import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 
-@Entity(name = "ProductType")
+@Entity
 public class ProductType extends ClassMap {
 
-    @Id(procedure = "GET_", seq = "")
-    public String id;
-    public String value;
-    public String description;
+    @Id(procedure = "GET_PRODUCTTYPE_SEQ", seq = "PTY")
+    String id;
+    String value;
+    String description;
 
     @Override
-    public void controle(Connection arg0) throws Exception {
+    public void controle(Connection arg0) throws Exception {}
+
+    public ProductType() {}
+
+    public ProductType(String value, String description) {
+        setValue(value);
+        setDescription(description);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

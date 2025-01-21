@@ -1,8 +1,9 @@
 package bakery.model;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
 
-import jakarta.servlet.http.HttpServletRequest;
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
@@ -11,51 +12,28 @@ import mg.jca.gfja.mapping.ClassMap;
 @Entity
 public class Product extends ClassMap {
 
-    @Id(procedure = "GET_PRODUCT_SEQ" , seq = "PRD")
+    @Id(procedure = "GET_PRODUCT_SEQ", seq = "PRD")
     String id;
     String name;
     String description;
+    @Attribute(name = "sale_price")
     double salePrice;
-
     @Attribute(name = "unit_id")
     String unitId;
     @Attribute(name = "product_type_id")
     String productTypeId;
 
-
     @Override
     public void controle(Connection arg0) throws Exception {}
 
-    public Product(){}
-    public Product(String name,String description,String purchase, String sale,String purhcasePrice, String salePrice,String unit,String productType){
+    public Product() {}
+
+    public Product(String name, String description, String salePrice, String unitId, String productTypeId) {
         setName(name);
         setDescription(description);
-        setUnitId(unit);
-        setProductTypeId(productType);
-        setPurchase(purchase);
-        setSale(sale);
-        setPurhcasePrice(longuerClePrimaire);
-        setSalePrice(longuerClePrimaire);
-    }
-
-    public void setPurchase(String purchase) {
-        boolean b = Boolean.valueOf(purchase);
-        setPurchase(b);
-    }
-
-    public void setSale(String sale) {
-        boolean b = Boolean.valueOf(sale);
-        setSale(b);
-    }
-
-    public void setPurhcasePrice(String value){
-        double doubleValue = Double.valueOf(value);
-        setPurhcasePrice(doubleValue);        
-    }
-
-    public void setSalePrice(String value){
-        double doubleValue = Double.valueOf(value);
-        setSalePrice(doubleValue);
+        setSalePrice(salePrice);
+        setUnitId(unitId);
+        setProductTypeId(productTypeId);
     }
 
     public String getId() {
@@ -82,43 +60,12 @@ public class Product extends ClassMap {
         this.description = description;
     }
 
-    public double getPurhcasePrice() {
-        return purhcasePrice;
-    }
-
-    public void setPurhcasePrice(double purhcasePrice) {
-        if (isPurchase() && purhcasePrice <= 0) {
-            throw new NumberFormatException("Purchase price must be greater than 0");
-        }
-        this.purhcasePrice = purhcasePrice;
-    }
-
     public double getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(double salePrice) {
-        if (isSale() && salePrice <= 0) {
-            throw new NumberFormatException("Sale price must be greater than 0");
-        }
-        this.salePrice = salePrice;
-    }
-
-    public boolean isPurchase() {
-        return isPurchase;
-    }
-
-    public void setPurchase(boolean isPurchase) {
-        System.out.println();
-        this.isPurchase = isPurchase;
-    }
-
-    public boolean isSale() {
-        return isSale;
-    }
-
-    public void setSale(boolean isSale) {
-        this.isSale = isSale;
+    public void setSalePrice(String salePrice) {
+        this.salePrice = Double.parseDouble(salePrice);
     }
 
     public String getUnitId() {
@@ -135,5 +82,22 @@ public class Product extends ClassMap {
 
     public void setProductTypeId(String productTypeId) {
         this.productTypeId = productTypeId;
-    }    
+    }
+
+
+    @Override
+    public ClassMap save(Connection conn) throws Exception {
+        super.save(conn);
+        generaInventory(conn);
+        return this;
+    }
+
+    public Inventory generaInventory(Connection conn) throws Exception{
+        Inventory inventory =  new Inventory();
+        inventory.setProductId(this.getId());
+        inventory.setActualQuantity(0);
+        inventory.setInventoryDate(Date.valueOf( LocalDate.now()));
+        inventory.save(conn);
+        return inventory;
+    }
 }

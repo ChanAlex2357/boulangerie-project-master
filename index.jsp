@@ -1,6 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="pages/static/header.jsp" %>
-    <main id="main" class="main">
-        <h1>Accueil</h1>
-    </main><!-- End #main -->
-<%@include file="pages/static/footer.jsp" %>
+<jsp:include page="header.jsp"/>
+    <div class="content">
+        <div class="container">
+            <div class="card">
+                <h2>WELCOME</h2>
+            </div>
+        </div>
+    </div>
+<jsp:include page="footer.jsp"/>
