@@ -2,6 +2,7 @@ package bakery.model;
 
 import java.sql.Connection;
 
+import bakery.util.BakeryConstante;
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
@@ -16,7 +17,7 @@ public class Recipe extends ClassMap {
     @Attribute(name = "recipe_cost")
     double recipeCost;
     String name;
-    @Attribute(name = "nature_type_id")
+    @Attribute(name = "recipe_type_id")
     String recipeTypeId;
     @Attribute(name = "product_id")
     String productId;
@@ -105,12 +106,23 @@ public class Recipe extends ClassMap {
     private void initDetailsAttributs(Connection conn)throws Exception{
         RecipeIngredient[] recipeIngredients = getRecipeIngredients(conn);
         double cost = 0;
+        String recipeType = BakeryConstante.RECIPETYPE_NATURE;
         String name = "Recette de "+this.getProductId();
         for (RecipeIngredient recipeIngredient : recipeIngredients) {
-            cost += recipeIngredient.getIngredient(conn).getPurchasePrice() * recipeIngredient.getQuantity();
+            Ingredient ingredient = recipeIngredient.getIngredient(conn);
+            cost += ingredient.getPurchasePrice() * recipeIngredient.getQuantity();
+            recipeType = controllerTypeByNatureIngredient(ingredient);
         }
         setRecipeCost(cost);
+        setRecipeTypeId(recipeType);
         setName(name);
+    }
+
+    private String controllerTypeByNatureIngredient(Ingredient ingredient){
+        if(ingredient.getNatureTypeId().equals(BakeryConstante.NATURE_NOT_BASE)){
+            return BakeryConstante.RECIPETYPE_NON_NATURE;
+        }
+        return BakeryConstante.RECIPETYPE_NATURE;
     }
 
     public Product getProduct(Connection conn) throws Exception {

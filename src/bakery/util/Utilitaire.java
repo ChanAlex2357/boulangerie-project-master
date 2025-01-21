@@ -18,7 +18,8 @@ public class Utilitaire {
         }
 
     public static Connection getConn(){
-        return Utilitaire.DbUtils().getConn();
+        Connection conn = Utilitaire.DbUtils().getConn();
+        return conn;
     }
 
     public static RequestDispatcher getLayoutDispatcher(HttpServletRequest request,String page){

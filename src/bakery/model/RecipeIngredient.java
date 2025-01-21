@@ -11,7 +11,7 @@ import mg.jca.gfja.utils.GenUtils;
 @Entity
 public class RecipeIngredient extends ClassMap {
 
-    @Id(procedure = "GET_RECIPE_INGREDIENT_SEQ", seq = "RCI")
+    @Id(procedure = "GET_RECIPEINGREDIENT_SEQ", seq = "RCI")
     String id;
     double quantity;
     @Attribute(name = "recipe_id")
