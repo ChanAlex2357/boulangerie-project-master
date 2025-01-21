@@ -31,6 +31,8 @@ CREATE SEQUENCE ingredienttype_seq START WITH 1;
 CREATE SEQUENCE recipetypes_seq START WITH 1;
 CREATE SEQUENCE naturetype_seq START WITH 1;
 CREATE SEQUENCE product_recommendation_seq START WITH 1;
+CREATE SEQUENCE baker_seq START WITH 1;
+CREATE SEQUENCE baker_commission_seq START WITH 1;
 
 -- Sequence PRODUCT 
 CREATE OR REPLACE FUNCTION GET_PRODUCT_SEQ()
@@ -408,6 +410,28 @@ DECLARE
     retour NUMERIC;
 BEGIN
    SELECT nextval('product_recommendation_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence PRODUCT_RECOMMENDATION 
+CREATE OR REPLACE FUNCTION GET_BAKER_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('baker_seq') INTO retour;
+   RETURN retour;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sequence PRODUCT_RECOMMENDATION 
+CREATE OR REPLACE FUNCTION GET_GET_BAKERCOMMISSION_SEQ()
+RETURNS NUMERIC AS $$
+DECLARE
+    retour NUMERIC;
+BEGIN
+   SELECT nextval('baker_commission_seq') INTO retour;
    RETURN retour;
 END;
 $$ LANGUAGE plpgsql;

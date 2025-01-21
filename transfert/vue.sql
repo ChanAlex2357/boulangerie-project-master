@@ -52,14 +52,17 @@ FROM
 JOIN 
     Customer c ON s.customer_id = c.id;
 
-CREATE VIEW BakerCommissionLib as   
+CREATE VIEW BakerCommissionLib as
 SELECT 
-    bc.baker_id as baker_id,
-    bc.amount as amount,
+    bc.id_baker as id_baker,
+    bc.montant as montant,
     bc.date_commission as date_commission,
     b.name as name
 
 FROM
     Baker b
 JOIN 
-    BakerCommission bc ON b.id=bc.baker_id; 
+    BakerCommission bc ON b.id=bc.id_baker; 
+
+
+CREATE OR REPLACE VIEW
