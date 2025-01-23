@@ -41,7 +41,7 @@
                     %>
                     <tr>
                         <td><%=comm.getName()%></td>
-                        <td><%=comm.getCommission()%></td>
+                        <td><%=comm.getTotalCommission()%></td>
                     </tr>
                     <%
                         }
