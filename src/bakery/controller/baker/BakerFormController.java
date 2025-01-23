@@ -31,7 +31,8 @@ public class BakerFormController extends HttpServlet {
         String name = req.getParameter("name");
         Date dateEmbauche = Date.valueOf(req.getParameter("dateEmbauche"));
         double commission = Double.parseDouble(req.getParameter("commission"));
-        Baker baker = new Baker(name,dateEmbauche,commission);
+        String idGenre = req.getParameter("genre");
+        Baker baker = new Baker(name,dateEmbauche,commission,idGenre);
         try (Connection conn = Utilitaire.getConn()) {
             try {
                 conn.setAutoCommit(false);
