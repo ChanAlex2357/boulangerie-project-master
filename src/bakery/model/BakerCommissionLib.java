@@ -13,7 +13,7 @@ import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
 import mg.jca.gfja.utils.GenUtils;
 
-
+@Entity
 public class BakerCommissionLib extends ClassMap{
     @Attribute(name = "id_baker")
     String idBaker;

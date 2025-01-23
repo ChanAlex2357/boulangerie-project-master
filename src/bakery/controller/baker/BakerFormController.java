@@ -5,9 +5,6 @@ import java.sql.Connection;
 import java.sql.Date;
 
 import bakery.model.Baker;
-import bakery.model.Product;
-import bakery.model.ProductType;
-import bakery.model.Unit;
 import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +18,7 @@ public class BakerFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection conn = Utilitaire.getConn()) {
-            Baker[] bakers = new Unit().getAll(conn);
+            Baker[] bakers = new Baker().getAll(conn);
             req.setAttribute("bakers", bakers);
             Utilitaire.getLayoutDispatcher(req, "liste/baker-list").forward(req, resp);
         } catch (Exception e) {
