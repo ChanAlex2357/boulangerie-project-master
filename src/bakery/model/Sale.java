@@ -3,6 +3,7 @@ package bakery.model;
 import java.sql.Connection;
 import java.sql.Date;
 
+import bakery.util.Utilitaire;
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
 import mg.jca.gfja.annotations.Id;
@@ -106,12 +107,14 @@ public class Sale extends ClassMap {
     }
     public BakerCommission generateCommission(Connection conn)throws Exception{
         Baker baker = Baker.getById(new Baker(), getBakerId(), conn);
+        Utilitaire.outWriter.println("Baker : "+baker);
         BakerCommission bakerCommission = new BakerCommission();
         bakerCommission.setSaleId(this.getId());
         bakerCommission.setBakerId(this.getBakerId());
         bakerCommission.setDateCommission(this.getSaleDate());
         bakerCommission.setAmount( calculerCommission(baker));
         bakerCommission.save(conn);
+        Utilitaire.outWriter.println("vita commission");
         return bakerCommission;
     }
 

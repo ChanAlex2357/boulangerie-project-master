@@ -28,6 +28,7 @@ public class SaleController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection conn = Utilitaire.getConn()) {
+            Utilitaire.outWriter = resp.getWriter();
             saveSale(req, conn);
             resp.sendRedirect("/boulangerie/sales");
         } catch (Exception e) {

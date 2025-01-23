@@ -1,5 +1,6 @@
 package bakery.util;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import jakarta.servlet.RequestDispatcher;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import mg.jca.gfja.utils.DbUtils;
 
 public class Utilitaire {
+    public static PrintWriter outWriter;
     public static DbUtils DbUtils(){
             try {
                 Class.forName("org.postgresql.Driver");
@@ -14,7 +16,7 @@ public class Utilitaire {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            return new DbUtils("jdbc:postgresql://localhost:5432/bakery","postgres","tsiky");
+            return new DbUtils("jdbc:postgresql://localhost:5432/bakery","postgres","itu16");
         }
 
     public static Connection getConn(){

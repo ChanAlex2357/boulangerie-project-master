@@ -6,11 +6,28 @@ CREATE TABLE ProductType(
    PRIMARY KEY(id)
 );
 
+CREATE TABLE Genre (
+   id VARCHAR(255),
+   value VARCHAR(50) NOT NULL,
+   description VARCHAR(255) ,
+   PRIMARY KEY(id)
+);
+
 CREATE TABLE Baker(
    id VARCHAR(255) ,
    name VARCHAR(255) ,
    hire_date DATE NOT NULL ,
    commission NUMERIC(15,2)   NOT NULL,
+   genre_id,
+   PRIMARY KEY(id),
+   FOREIGN KEY(genre_id) REFERENCES Genre(id)
+);
+
+CREATE TABLE ConfigCommission(
+   id VARCHAR(255) ,
+   daty DATE,
+   commission NUMERIC(15,2)   NOT NULL,
+   seil NUMERIC(15,2)   NOT NULL,
    PRIMARY KEY(id)
 );
 
