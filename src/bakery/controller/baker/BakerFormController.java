@@ -21,6 +21,8 @@ public class BakerFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection conn = Utilitaire.getConn()) {
+            Baker[] bakers = new Baker().getAll(conn);
+            req.setAttribute("bakers", bakers);
             Utilitaire.getLayoutDispatcher(req, "insertion/baker-form").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());

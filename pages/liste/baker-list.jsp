@@ -30,7 +30,7 @@
                     <tr>
                         <th scope="row"> <%=bakers[i].getId()%> </th>
                         <td><%=bakers[i].getName()%></td>
-                        <td><%=bakers[i].getHiredate()%></td>
+                        <td><%=bakers[i].getHireDate()%></td>
                         <td><%=bakers[i].getCommission()%></td>
                     </tr>
                     <%
