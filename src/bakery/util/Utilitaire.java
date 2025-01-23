@@ -14,7 +14,7 @@ public class Utilitaire {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            return new DbUtils("jdbc:postgresql://localhost:5432/bakery","postgres","itu16");
+            return new DbUtils("jdbc:postgresql://localhost:5432/bakery","postgres","tsiky");
         }
 
     public static Connection getConn(){
