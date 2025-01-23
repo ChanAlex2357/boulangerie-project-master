@@ -6,6 +6,14 @@ CREATE TABLE ProductType(
    PRIMARY KEY(id)
 );
 
+CREATE TABLE Baker(
+   id VARCHAR(255) ,
+   name VARCHAR(255) ,
+   hire_date DATE NOT NULL ,
+   commission NUMERIC(15,2)   NOT NULL,
+   PRIMARY KEY(id)
+);
+
 -- Table: NatureType (NatureType)
 CREATE TABLE NatureType(
    id VARCHAR(255),
@@ -71,11 +79,23 @@ CREATE TABLE Sale(
    id VARCHAR(255),
    sale_date DATE NOT NULL,
    amount NUMERIC(15,2) NOT NULL,
+   baker_id VARCHAR(255)  NOT NULL,
    customer_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
+   FOREIGN KEY(baker_id) REFERENCES Baker(id),
    FOREIGN KEY(customer_id) REFERENCES Customer(id)
 );
 
+CREATE TABLE BakerCommission(
+   id VARCHAR(255) ,
+   amount NUMERIC(15,2)  ,
+   date_commission DATE NOT NULL,
+   sale_id VARCHAR(255)  NOT NULL,
+   baker_id VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(sale_id) REFERENCES Sale(id),
+   FOREIGN KEY(baker_id) REFERENCES Baker(id)
+);
 -- Table: Delivery (Delivery)
 CREATE TABLE Delivery(
    id VARCHAR(255),
@@ -110,6 +130,7 @@ CREATE TABLE IngredientType(
    description VARCHAR(255),
    PRIMARY KEY(id)
 );
+
 
 -- Table: Ingredient (Ingredient)
 CREATE TABLE Ingredient(
