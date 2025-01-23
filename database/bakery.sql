@@ -18,7 +18,7 @@ CREATE TABLE Baker(
    name VARCHAR(255) ,
    hire_date DATE NOT NULL ,
    commission NUMERIC(15,2)   NOT NULL,
-   genre_id,
+   genre_id VARCHAR(255) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(genre_id) REFERENCES Genre(id)
 );
