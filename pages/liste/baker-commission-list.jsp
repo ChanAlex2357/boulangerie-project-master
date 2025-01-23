@@ -37,11 +37,11 @@
                 </thead>
                 <tbody>
                     <%                                            
-                        for(BakerCommissionLib BakerCommissionLibs : BakerCommissionLib) {
+                        for(BakerCommissionLib comm : bakerCommissionLibs) {
                     %>
                     <tr>
-                        <td><%=BakerCommissionLib.getName()%></td>
-                        <td><%=BakerCommissionLib.getCommission()%></td>
+                        <td><%=comm.getName()%></td>
+                        <td><%=comm.getCommission()%></td>
                     </tr>
                     <%
                         }

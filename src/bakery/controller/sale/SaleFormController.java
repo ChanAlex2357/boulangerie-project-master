@@ -3,6 +3,7 @@ package bakery.controller.sale;
 import java.io.IOException;
 import java.sql.Connection;
 
+import bakery.model.Baker;
 import bakery.model.Customer;
 import bakery.model.Product;
 import bakery.util.Utilitaire;
@@ -20,6 +21,8 @@ public class SaleFormController extends HttpServlet {
             Product[] products = new Product().getAll(conn);
             /// Recuperer la liste des donnee pour le formulaire
             Customer[] customers = new Customer().getAll(conn);
+            Baker[] bakers = new Baker().getAll(conn);
+            req.setAttribute("bakers", bakers);
             req.setAttribute("customers", customers);
             req.setAttribute("products", products);
             Utilitaire.getLayoutDispatcher(req,"insertion/sale-form").forward(req, resp);

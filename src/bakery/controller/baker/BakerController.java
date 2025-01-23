@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.Date;
 
 import bakery.model.Baker;
-import bakery.model.Product;
-import bakery.model.ProductType;
 import bakery.model.Unit;
 import bakery.util.Utilitaire;
 import jakarta.servlet.ServletException;
@@ -15,15 +13,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BakerFormController", urlPatterns = "/bakerform")
-public class BakerFormController extends HttpServlet {
-
-    @Override
+@WebServlet(name = "BakerController" , urlPatterns = "/bakers")
+public class BakerController extends HttpServlet{
+     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection conn = Utilitaire.getConn()) {
             Baker[] bakers = new Baker().getAll(conn);
             req.setAttribute("bakers", bakers);
-            Utilitaire.getLayoutDispatcher(req, "insertion/baker-form").forward(req, resp);
+            Utilitaire.getLayoutDispatcher(req, "liste/baker-list").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());
         }
@@ -34,8 +31,7 @@ public class BakerFormController extends HttpServlet {
         String name = req.getParameter("name");
         Date dateEmbauche = Date.valueOf(req.getParameter("dateEmbauche"));
         double commission = Double.parseDouble(req.getParameter("commission"));
-        String idGenre = req.getParameter("genre");
-        Baker baker = new Baker(name,dateEmbauche,commission,idGenre);
+        Baker baker = new Baker(name,dateEmbauche,commission);
         try (Connection conn = Utilitaire.getConn()) {
             try {
                 conn.setAutoCommit(false);

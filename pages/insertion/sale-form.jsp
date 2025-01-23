@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bakery.model.Customer"%>
 <%@page import="bakery.model.Product"%>
+<%@page import="bakery.model.Baker"%>
 
 <div class="py-4 px-3 px-md-4">
     <div class="mb-3 mb-md-4 d-flex justify-content-between">
@@ -13,6 +14,20 @@
             <div class="form-group">
                 <label for="saleDate">Date de la vente</label>
                 <input type="date" id="saleDate" name="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="saleCus">Baker</label>
+                <select id="saleCus" name="BakerId" class="form-control" required>
+                    <option value="">Sélectionner le Baker</option>
+                    <% 
+                        Baker[] bakers = (Baker[]) request.getAttribute("bakers");
+                        for(Baker baker : bakers){
+                    %>
+                            <option value="<%=baker.getId()%>"><%=baker.getName()%></option>
+                    <%
+                        }
+                    %>
+                </select>
             </div>
             <div class="form-group">
                 <label for="saleCustomerId">Customer</label>
@@ -29,6 +44,7 @@
                     %>
                 </select>
             </div>
+            
             <div class="form-group">
                 <label>Détails des produits</label>
                 <table class="table" id="productTable">

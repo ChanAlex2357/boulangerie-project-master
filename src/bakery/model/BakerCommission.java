@@ -10,7 +10,7 @@ import mg.jca.gfja.mapping.ClassMap;
 
 @Entity
 public class BakerCommission extends ClassMap{
-    @Id(procedure = "GET_BAKER_SEQ", seq = "BAK")
+    @Id(procedure = "GET_BAKERCOMMISSION_SEQ", seq = "BAKCO")
     String id;
     double amount;
     @Attribute(name = "date_commission")

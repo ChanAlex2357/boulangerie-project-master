@@ -19,6 +19,8 @@ public class Sale extends ClassMap {
     double amount;
     @Attribute(name = "customer_id")
     String customerId;
+    @Attribute(name = "baker_id")
+    String bakerId;
 
     SaleDetails[] saleDetails;
     
@@ -77,15 +79,12 @@ public class Sale extends ClassMap {
 
     public void calculerSaleAmount(Connection conn)throws Exception{
         double amount = 0;
-        String msg = "";
         for (SaleDetails saleDetails : getSaleDetails(conn)) {
             double qte = saleDetails.getQuantity();
             double pu = saleDetails.getUnitPrice(); 
             amount +=  qte * pu;
-            msg +=" > "+qte+" * "+pu+" | \n";
         }
         setAmount(amount);
-        // throw new NumberFormatException(msg+" ==> "+amount);
     }
     public void saveDetails(Connection conn)throws Exception{
         for (SaleDetails saleDetails : getSaleDetails(conn)) {
@@ -98,7 +97,22 @@ public class Sale extends ClassMap {
         calculerSaleAmount(conn);
         super.save(conn);
         saveDetails(conn);
+        generateCommission(conn);
         return this;
+    }
+
+    public double calculerCommission(Baker baker){
+        return (baker.getCommission() * this.getAmount())/100;
+    }
+    public BakerCommission generateCommission(Connection conn)throws Exception{
+        Baker baker = Baker.getById(new Baker(), getBakerId(), conn);
+        BakerCommission bakerCommission = new BakerCommission();
+        bakerCommission.setSaleId(this.getId());
+        bakerCommission.setBakerId(this.getBakerId());
+        bakerCommission.setDateCommission(this.getSaleDate());
+        bakerCommission.setAmount( calculerCommission(baker));
+        bakerCommission.save(conn);
+        return bakerCommission;
     }
 
     public void setSaleDetails(SaleDetails[] saleDetails) {
@@ -112,5 +126,13 @@ public class Sale extends ClassMap {
             setSaleDetails(details);
         }
         return saleDetails;
+    }
+
+    public String getBakerId() {
+        return bakerId;
+    }
+
+    public void setBakerId(String bakerId) {
+        this.bakerId = bakerId;
     }
 }

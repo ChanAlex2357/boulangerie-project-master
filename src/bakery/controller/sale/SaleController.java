@@ -36,18 +36,26 @@ public class SaleController extends HttpServlet {
     }
 
     private void saveSale(HttpServletRequest req , Connection conn) throws Exception {
-        String date = req.getParameter("date");
-        String customerId = req.getParameter("CustomerId");
-        String [] products = req.getParameterValues("productId[]");
-        String [] quantity = req.getParameterValues("quantity[]");
-
-        Sale sale = new Sale();
-        sale.setSaleDate(date);
-        sale.setCustomerId(customerId);
-
-        SaleDetails[] saleDetails = SaleDetails.generateSaleDetails(products, quantity, conn); 
-        sale.setSaleDetails(saleDetails);
-        sale.save(conn);
+        conn.setAutoCommit(false);
+        try {
+            String date = req.getParameter("date");
+            String customerId = req.getParameter("CustomerId");
+            String bakerId = req.getParameter("BakerId");
+            String [] products = req.getParameterValues("productId[]");
+            String [] quantity = req.getParameterValues("quantity[]");
+    
+            Sale sale = new Sale();
+            sale.setSaleDate(date);
+            sale.setCustomerId(customerId);
+            sale.setBakerId(bakerId);
+    
+            SaleDetails[] saleDetails = SaleDetails.generateSaleDetails(products, quantity, conn); 
+            sale.setSaleDetails(saleDetails);
+            sale.save(conn);
+            conn.commit();
+        } catch (Exception e) {
+            conn.rollback();
+        }
     }
 
 }

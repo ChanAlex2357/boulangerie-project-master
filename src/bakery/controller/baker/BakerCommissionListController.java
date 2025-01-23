@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BakerFormController", urlPatterns = "/BakerCommissionLibs")
+@WebServlet(name = "BakerCommissionListController", urlPatterns = "/bakercommission")
 public class BakerCommissionListController extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,7 +20,7 @@ public class BakerCommissionListController extends HttpServlet {
             String dmax=req.getParameter("dmax");;
             BakerCommissionLib[] bakerCommissionLibs = new BakerCommissionLib().filter(dmin,dmax,conn);
             req.setAttribute("bakerCommissionLibs", bakerCommissionLibs);
-            Utilitaire.getLayoutDispatcher(req, "liste/baker-list").forward(req, resp);
+            Utilitaire.getLayoutDispatcher(req, "liste/baker-commission-list").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());
         }

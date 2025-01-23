@@ -65,6 +65,12 @@
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/sales">Ventes</a>
                 </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/bakercommission">Commissions</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/bakers">Bakers</a>
+                </li>
             </ul>
             <!-- End UI Components: listes -->
         </li>
@@ -115,6 +121,9 @@
 
                 <li class="side-nav-menu-item">
                     <a class="side-nav-menu-link" href="/boulangerie/saleform">Vente</a>
+                </li>
+                <li class="side-nav-menu-item">
+                    <a class="side-nav-menu-link" href="/boulangerie/bakerform">Baker</a>
                 </li>
             </ul>
             <!-- End UI Components: formulaires -->

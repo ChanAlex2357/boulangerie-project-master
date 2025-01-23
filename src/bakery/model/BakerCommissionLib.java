@@ -9,13 +9,11 @@ import java.util.List;
 
 import mg.jca.gfja.annotations.Attribute;
 import mg.jca.gfja.annotations.Entity;
-import mg.jca.gfja.annotations.Id;
 import mg.jca.gfja.mapping.ClassMap;
-import mg.jca.gfja.utils.GenUtils;
 
 @Entity
 public class BakerCommissionLib extends ClassMap{
-    @Attribute(name = "id_baker")
+    @Attribute(name = "baker_id")
     String idBaker;
     String name;
     @Attribute(name = "total_commission")
@@ -59,20 +57,20 @@ public class BakerCommissionLib extends ClassMap{
             return getAll(conn);
         }
         List<BakerCommissionLib>  bakerCommissionLib = new ArrayList<>();
-        String query = "SELECT id_baker,name,sum(montant) as total_commission FROM BakerCommissionLib WHERE 1=1 ";
+        String query = "SELECT baker_id,name,sum(amount) as total_commission FROM BakerCommissionLib WHERE 1=1 ";
         if((dmin!=null || !dmin.equals("")) && (dmax==null || dmax.equals(""))) {
             dmax=dmin;
         }
         if((dmin==null || dmin.equals("")) && (dmax!=null || !dmax.equals(""))) {
             dmin=dmax;
         }
-        query+="and (date_commission between '"+dmin+"' and '"+dmax+"') group by name";
+        query+="and (date_commission between '"+dmin+"' and '"+dmax+"') group by baker_id,name";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             System.out.println(query);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     BakerCommissionLib bakerCommLib = new BakerCommissionLib();
-                    bakerCommLib.setIdBaker(rs.getString("id_baker"));
+                    bakerCommLib.setIdBaker(rs.getString("baker_id"));
                     bakerCommLib.setName(rs.getString("name"));
                     bakerCommLib.setTotalCommission(rs.getDouble("total_commission"));
                     bakerCommissionLib.add(bakerCommLib);
