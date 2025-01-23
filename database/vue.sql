@@ -58,8 +58,17 @@ SELECT
     bc.amount as amount,
     bc.date_commission as date_commission,
     b.name as name
-
+    b.name as name
+    g.value as genre 
 FROM
     Baker b
 JOIN 
+<<<<<<< HEAD
+    BakerCommission bc ON b.id=bc.id_baker
+JOIN 
+    Genre g ON b.genre_id=bc.g.id;
+
+CREATE OR REPLACE VIEW
+=======
     BakerCommission bc ON b.id=bc.baker_id; 
+>>>>>>> f7a4de7a8129da62937c29e01278760bea2a8e6b

@@ -15,18 +15,22 @@ public class Baker extends ClassMap {
     double commission;
     @Attribute(name = "hire_date")
     Date hireDate;
+    @Attribute(name = "genre_id")
+    String idGenre;
 
-    public Baker(String name, Date hireDate, double commission) {
+    public Baker(String name, Date hireDate, double commission,String idGenre) {
         this.name = name;
         this.commission = commission;
         this.hireDate = hireDate;
+        this.idGenre = idGenre;
     }
 
-    public Baker(String Id, String name, double commission, Date hireDate) {
+    public Baker(String Id, String name, double commission, Date hireDate,String idGenre) {
         this.id = Id;
         this.name = name;
         this.commission = commission;
         this.hireDate = hireDate;
+        this.idGenre = idGenre;
     }
 
     public Baker() {
@@ -65,5 +69,13 @@ public class Baker extends ClassMap {
 
     public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
+    }
+
+    public String getIdGenre() {
+        return idGenre;
+    }
+
+    public void setIdGenre(String idGenre) {
+        this.idGenre = idGenre;
     }
 }

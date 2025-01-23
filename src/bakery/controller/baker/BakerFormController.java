@@ -28,6 +28,4 @@ public class BakerFormController extends HttpServlet {
             e.printStackTrace(resp.getWriter());
         }
     }
-
-
 }
