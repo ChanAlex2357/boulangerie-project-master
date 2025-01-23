@@ -28,27 +28,4 @@ public class BakerFormController extends HttpServlet {
             e.printStackTrace(resp.getWriter());
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        Date dateEmbauche = Date.valueOf(req.getParameter("dateEmbauche"));
-        double commission = Double.parseDouble(req.getParameter("commission"));
-        String idGenre = req.getParameter("genre");
-        Baker baker = new Baker(name,dateEmbauche,commission,idGenre);
-        try (Connection conn = Utilitaire.getConn()) {
-            try {
-                conn.setAutoCommit(false);
-                baker.save(conn);
-                conn.commit();
-            } catch (Exception e) {
-                conn.rollback();
-                throw e;
-            }
-        } catch (Exception e) {
-            e.printStackTrace(resp.getWriter());
-        }
-
-        resp.sendRedirect("/boulangerie/bakers");
-    }
 }
