@@ -7,7 +7,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import mg.jca.gfja.utils.DbUtils;
 
-public class Utilitaire {
+public class Utilitaire { 
     public static PrintWriter outWriter;
     public static DbUtils DbUtils(){
             try {

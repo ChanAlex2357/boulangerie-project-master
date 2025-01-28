@@ -9,6 +9,10 @@ INSERT INTO Customer (id, name, phone, address) VALUES ('CUS8', 'Frank Green', '
 INSERT INTO Customer (id, name, phone, address) VALUES ('CUS9', 'Grace Black', '3334445555', '606 Fir St');
 INSERT INTO Customer (id, name, phone, address) VALUES ('CUS10', 'Hank Blue', '6667778888', '707 Willow St');
 
+INSERT INTO Genre (id, value , description) VALUES ('GE1', 'Homme', 'Homme');
+INSERT INTO Genre (id, value , description) VALUES ('GE2', 'Femme', 'Femme');
+
+
 -- INSERT INTO Sale (id, sale_date, amount, customer_id) VALUES ('SALE1', '2024-01-01', 100.00, 'CUS1');
 -- INSERT INTO Sale (id, sale_date, amount, customer_id) VALUES ('SALE2', '2024-02-01', 150.00, 'CUS1');
 -- INSERT INTO Sale (id, sale_date, amount, customer_id) VALUES ('SALE3', '2024-03-01', 200.00, 'CUS1');

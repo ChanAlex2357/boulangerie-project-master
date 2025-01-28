@@ -56,6 +56,7 @@ public class SaleController extends HttpServlet {
             conn.commit();
         } catch (Exception e) {
             conn.rollback();
+            throw e;
         }
     }
 

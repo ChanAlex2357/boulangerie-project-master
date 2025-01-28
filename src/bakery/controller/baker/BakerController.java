@@ -42,10 +42,9 @@ public class BakerController extends HttpServlet{
                 conn.rollback();
                 throw e;
             }
+        resp.sendRedirect("/boulangerie/bakers");
         } catch (Exception e) {
             e.printStackTrace(resp.getWriter());
         }
-
-        resp.sendRedirect("/boulangerie/bakers");
     }
 }

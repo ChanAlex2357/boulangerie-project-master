@@ -2,4 +2,4 @@ WEB-INF/lib/
 WEB-INF/classes/
 assest/vendor/*
 src/resources/*
-src\bakery\util\Utilitaire
+src/bakery/util/*
